@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<template id="layout_footer">
+    <div class="row">
+        <div id="greeting" style="page-break-inside: avoid;margin-top:12pt;">
+            <p>Mit freundlichen Grüßen</p>
+            <p t-if="contact.name" t-field="contact.name"/>
+            <p t-field="company.name"/>
+        </div>
+    </div>
+</template>
+</data>
+</openerp>

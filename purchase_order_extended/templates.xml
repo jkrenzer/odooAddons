@@ -1,0 +1,50 @@
+<openerp>
+	<data>
+		<record id="view_purchase_order_extended" model="ir.ui.view">
+		        <field name="name">purchase.order.extended.form</field>
+		        <field name="model">purchase.order</field>
+		        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+		        <field name="arch" type="xml">
+				<xpath expr="//button[@name='view_picking']" position="before">
+					<button name="send_order" states="approved" string="Send PO" type="object" class="oe_highlight"  groups="base.group_user"/>
+					<button name="print_order" states="approved,ordered" string="Print PO" type="object" groups="base.group_user"/>
+				</xpath>
+				<xpath expr="//field[@name='state']" position="attributes">
+					<attribute name="statusbar_visible">draft,sent,bid,approved,ordered,done</attribute>
+				</xpath>
+                                <xpath expr="//button[@name='view_picking']" position="attributes">
+                                        <attribute name="attrs">{'invisible': ['|', ('shipped','=',True), ('state','!=', 'ordered')]}</attribute>
+                                </xpath>
+                                <xpath expr="//button[@name='view_invoice']" position="attributes">
+                                        <attribute name="attrs">{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}</attribute>
+                                </xpath>
+                                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                                        <attribute name="states">draft,confirmed,sent,bid,approved,ordered,except_picking,except_invoice</attribute>
+                                </xpath>
+				<xpath expr="//field[@name='partner_ref']" position="after">
+					<field name="parent" />
+				</xpath>
+                                <xpath expr="//field[@name='picking_type_id']" position="after">
+                                        <field name="contact" />
+					<field name="manual_name" />
+                                </xpath>
+                                <xpath expr="//field[@name='validator']" position="after">
+                                        <field name="approver" />
+                                </xpath>
+		        </field>
+		</record>
+		<record id="view_purchase_order_extended_inherited" model="ir.ui.view">
+                        <field name="name">purchase.order.extended.form.inherit</field>
+                        <field name="model">purchase.order</field>
+                        <field name="inherit_id" ref="purchase_rfq_bid_workflow.view_purchase_order_form"/>
+                        <field name="arch" type="xml">
+				<xpath expr="//field[@name='state']" position="attributes">
+                                        <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,ordered,done</attribute>
+                                </xpath>
+				<xpath expr="//button[@name='draft_po']" position="after">
+					<button name="clone_to_draft_po" states="bid" string="Clone to PO" type="object" groups="base.group_user"  class="oe_highlight"/>
+				</xpath>
+                        </field>
+                </record>
+	</data>
+</openerp>

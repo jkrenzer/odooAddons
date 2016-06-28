@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="trans_draft_clone_draftpo" model="workflow.transition">
+			<field name="act_from" ref="purchase.act_draft"/>
+			<field name="act_to" ref="act_draft_po"/>
+			<field name="signal">clone_to_draft_po</field>
+	        </record>
+		<record id="trans_bid_clone_draftpo" model="workflow.transition">
+			<field name="act_from" ref="purchase.act_bid"/>
+			<field name="act_to" ref="act_draft_po"/>
+			<field name="signal">clone_to_draft_po</field>
+		</record>
+	</data>
+</openerp>
+

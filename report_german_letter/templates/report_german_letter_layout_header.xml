@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<template id="layout_header">
+    <div class="row">
+        <div id="addressee_box" class="col-xs-7" style="">
+            <div style="margin-bottom:3mm;">
+                <span style="font-size:8.0pt;">GIESS GmbH
+                    <b> &amp;bull; </b>Garbsener Landstr. 10 
+                    <b> &amp;bull; </b> 30419 Hannover
+                </span>
+            </div>
+            <div style="font-weight:bold;" t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],&quot;no_marker&quot;: true}"/>
+            <p t-if="o.partner_id.fax" style="font-weight:bold;">FAX: 
+                <span t-field="o.partner_id.fax"/>
+            </p>
+        </div>
+        <div class="col-xs-5" style="fontsize:11pt;margin-left:0;">
+            <div t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+            <div t-if="contact.name">Ansprp.: <span class="oe_editable" t-field="contact.name"/></div>
+            <div t-if="contact.phone">Telefon: <span t-field="contact.phone"/></div>
+            <div t-if="contact.fax">Fax: <span t-field="contact.fax"/></div>
+            <div t-if="contact.email">E-Mail: <span t-field="contact.email"/></div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:5mm;">
+        <div id="infoline" class="col-xs-12" style="vertical-align:top;display:table;width:100%">
+            <div id="first_line" style="display:table-row;font-size:8pt;">
+                <div style="display:table-cell;width:25%">Ihr Zeichen</div>
+                <div style="display:table-cell;width:25%">Ihre Nachicht vom</div>
+                <div style="display:table-cell;width:25%">Unser Zeichen</div>
+                <div style="display:table-cell;width:25%">Datum</div>
+            </div>
+            <div id="second_line" style="display:table-row;">
+                <div style="display:table-cell;">
+                    <span t-if="o.partner_ref" t-field="o.partner_ref"/>
+                </div>
+                <div style="display:table-cell;">
+                    <span t-if="o.name" t-field="o.bid_date"/>
+                </div>
+                <div style="display:table-cell;">
+                    <span t-if="o.name" t-field="o.name"/>
+                </div>
+                <div style="display:table-cell;">
+                    <span t-if="o.date_order" t-field="o.date_order" t-field-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div t-if="subject" class="row" style="margin-top:7mm;"> <!-- Add a subject line if we got one -->
+        <div id="subject" class="col-xs-12">
+            <b>
+                <span t-raw="subject"/>
+            </b>
+        </div>
+    </div>
+</template>
+</data>
+</openerp>
