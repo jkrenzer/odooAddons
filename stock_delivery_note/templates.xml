@@ -1,0 +1,114 @@
+<openerp>
+	<data>
+		    <report
+ 			id="report_delivery_note"
+			model="stock.picking"
+			string="Delivery Note"
+			name="stock_picking_delivery_note.report_delivery_note_view"
+			file="stock_picking_delivery_note_report_devlivery_note"
+			report_type="qweb-pdf" />
+
+                    <template id="report_delivery_note_view">            
+                        <t t-name="stock_picking_delivery_note.report_delivery_note_view">
+                            <t t-call="report.html_container">
+                                <t t-foreach="docs" t-as="o">
+                                    <t t-call="report.external_layout">
+                                        <div class="page" style="font-family:'Eras Medium ITC',sans-serif;font-size:11pt;line-height:1.15 !important;">
+                                            <div class="row">
+                                                <div id="addressee_box" class="col-xs-7" style="">
+                                                    <div style="margin-bottom:3mm;">
+                                                        <span style="font-size:8.0pt;">GIESS GmbH
+                                                            <b> &amp;bull; </b>Garbsener Landstr. 10 
+                                                            <b> &amp;bull; </b> 30419 Hannover
+                                                        </span>
+                                                    </div>
+                                                    <div style="font-weight:bold;" t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],&quot;no_marker&quot;: true}"/>
+                                                    <p t-if="o.partner_id.fax" style="font-weight:bold;">FAX: 
+                                                        <span t-field="o.partner_id.fax"/>
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-5" style="fontsize:11pt;margin-left:0;">
+                                                    <div t-field="res_company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;, &quot;fax&quot;], &quot;no_marker&quot;: true}"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:5mm;">
+                                                <div id="infoline" class="col-xs-12" style="vertical-align:top;display:table;width:100%">
+                                                    <div id="first_line" style="display:table-row;font-size:8pt;">
+                                                        <div style="display:table-cell;width:25%">Ihr Zeichen</div>
+                                                        <div style="display:table-cell;width:25%">Ihre Nachicht vom</div>
+                                                        <div style="display:table-cell;width:25%">Unser Zeichen</div>
+                                                        <div style="display:table-cell;width:25%">Datum</div>
+                                                    </div>
+                                                    <div id="second_line" style="display:table-row;">
+                                                        <div style="display:table-cell;">
+                                                            <span t-if="o.partner_ref" t-field="o.partner_ref"/>
+                                                        </div>
+                                                        <div style="display:table-cell;">
+                                                            <!-- <span t-if="o.name" t-field="o.bid_date"/> -->
+                                                        </div>
+                                                        <div style="display:table-cell;">
+                                                            <span t-if="o.name" t-field="o.name"/>
+                                                        </div>
+                                                        <div style="display:table-cell;">
+                                                            <span t-if="o.date_done" t-field="o.date_done" t-field-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:7mm;">
+                                                <div id="subject" class="col-xs-12">
+                                                    <b>
+                                                        Lieferschein <span t-field="o.delivery_note_ref"/>
+                                                    </b>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:7mm;">
+                                                <div id="text_body" class="col-xs-12">
+                                                    <p>Sehr geehrte Damen und Herren,</p>
+                                                    <p>
+                                                        <span t-if="o.origin"> Bezug nehmend auf <span t-field="o.origin"/> übersenden wir Ihnen folgende Positionen:</span>
+                                                        <span t-if="not o.origin"> wir übersenden Ihnen folgende Positionen:</span>
+                                                    </p>
+                                                    <table style="font-size:10.0pt;width:100%;border-spacing:1em">
+                                                        <thead>
+                                                            <tr style="border-bottom:1px solid black;padding:0.5em;">
+                                                                <th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+                                                                    <strong>Pos.</strong>
+                                                                </th>
+                                                                <th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+                                                                    <strong>Menge</strong>
+                                                                </th>
+                                                                <th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+                                                                    <strong>Artikel</strong>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr t-foreach="o.move_lines" t-as="line">
+                                                            <td style="padding:0.5em;">
+                                                                <span t-esc="line_index + 1"/>
+                                                            </td>
+                                                            <td style="padding:0.5em;">
+                                                                <span style="font-weight:bold;" t-esc="str(line.product_uom_qty).replace('.',',')"/>&amp;nbsp;<span t-field="line.product_uom.name" groups="product.group_uom"/>
+                                                            </td>
+                                                            <td style="padding:0.5em;">
+                                                                <span t-field="line.name"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                    <div id="greeting" style="page-break-inside: avoid;margin-top:12pt;">
+                                                        <p>Sollten Sie Fragen haben oder sollten Probleme mit der Lieferung aufgetreten sein stehen wir Ihnen gerne zur Verfügung.</p>
+                                                        <p>Mit freundlichen Grüßen</p>
+                                                        <p t-field="o.contact"/>
+                                                        <p>GIESS GmbH</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+                        </t>
+                    </template>
+	</data>
+</openerp>

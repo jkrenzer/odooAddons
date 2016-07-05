@@ -1,37 +1,39 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Extended Purchase Orders",
+    'name': "stock_picking_delivery_note",
 
     'summary': """
-        Module which extends the purchase-order workflow to better differentiate RFQs and POs and also adds the possibility to derive POs without loosing the original RFQ.
-        """,
+        Add capability to print a delivery note on stock-pickings.""",
 
     'description': """
-        Long description of module's purpose
+        This modules adds a delivery note to stock pickings, which can be printed out and handed to the customer.
     """,
 
     'author': "Jörn Mankiewicz",
-    'website': "https://github.com/jmankiewicz/odooAddons",
+    'website': "https://github.com/jmankiewicz",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    "version": "8.0.0.1",
+    'version': '8.0.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','purchase','purchase_rfq_bid_workflow','purchase_order_revision'],
+    'depends': [
+	'base',
+	'stock',
+    ],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'templates.xml',
-	'purchase_sequence.xml',
-        #'purchase_order_extended.xml',
+	'delivery_note_sequence.xml',
+	'stock_picking.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo.xml',
     ],
-    "installable": True,
+    'installable': True,
 }
