@@ -1,0 +1,29 @@
+<openerp>
+    <data>
+        <record id="view_fritzbox" model="ir.ui.view">
+            <field name="name">fritzbox.form</field>
+            <field name="model">fritzbox</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <sheet>
+                    <div class="oe_title">
+                        <label string="FritzBox"/>
+                        <field name="name" class="oe_inline"/>
+                    </div>
+                    <group>
+                        <group string="Configuration">
+                            <field name="address"/>
+                            <field name="port"/>
+                            <field name="user"/>
+                            <field name="password"/>
+                        </group>
+                        <group string="Test Connection">
+                            <field name="model"/>
+                            <button name="test_connection" class="oe_inline oe_stat_button" />
+                        </group>
+                    </group>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</openerp>
