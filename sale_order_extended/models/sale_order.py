@@ -20,16 +20,19 @@
 #
 #
 
-from openerp import models, fields, api
+from openerp import models, fields, api, osv
+from openerp.tools.translate import _
 
-class sale_order(osv.osv):
+class SaleOrder(models.Model):
     _name = "sale.order"
     _inherit = "sale.order"
-    
-    _columns = {
-        'manual_name': fields.char('Manual Name', states=READONLY_STATES, related='name', store=False, help='Use this field to manually override the assigned name of the object.'),
-        'parent': fields.many2one('sale.order', 'Parent Object', readonly=False, copy=False),
+    READONLY_STATES = {
+	'confirmed': [('readonly', True)],
+	'ordered': [('readonly', True)],
+	'done': [('readonly', True)]
     }
+    manual_name = fields.Char('Manual Name', states=READONLY_STATES,related='name', store=False, help='Use this field to manually override the assigned name of the object.')
+    parent =  fields.Many2one('sale.order', 'Parent Object', readonly=False, copy=False)
 
     @api.multi
     def action_wait(self):
@@ -37,11 +40,12 @@ class sale_order(osv.osv):
                 defaults = {
 			'name': sale.name,
 			'manual_name': sale.name,
-                        'unrevisioned_name': new_name,
+                        'unrevisioned_name': sale.name,
 			}
                 if super(SaleOrder, self).action_wait():
-                    qou = super(PurchaseOrder, self).copy(default=defaults)
+                    qou = sale.copy(defaults)
+#		    sale.write(old_values)
                     sale.write({
                         'parent': qou.id,
                         })
-        return True
+            return True
