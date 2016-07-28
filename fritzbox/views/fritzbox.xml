@@ -2,8 +2,8 @@
     <data>
         <record id="view_fritzbox" model="ir.ui.view">
             <field name="name">fritzbox.form</field>
-            <field name="model">fritzbox</field>
-            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="model">fritzbox.fritzbox</field>
+	    <field name="type">form</field>
             <field name="arch" type="xml">
                 <sheet>
                     <div class="oe_title">
@@ -19,7 +19,7 @@
                         </group>
                         <group string="Test Connection">
                             <field name="model"/>
-                            <button name="test_connection" class="oe_inline oe_stat_button" />
+                            <button string="Initialize" name="action_init_connection" class="oe_inline oe_stat_button" type="object"/>
                         </group>
                     </group>
                 </sheet>

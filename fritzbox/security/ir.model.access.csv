@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fritzbox_fritzbox,fritzbox.fritzbox,model_fritzbox_fritzbox,,1,0,0,0
+user_access_fritzbox_fritzbox,fritzbox.fritzbox,model_fritzbox_fritzbox,,1,0,0,0
+admin_access_fritzbox_fritzbox,fritzbox.fritzbox,model_fritzbox_fritzbox,base.group_system,1,1,1,1
+
