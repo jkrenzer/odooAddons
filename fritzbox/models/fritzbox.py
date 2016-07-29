@@ -6,7 +6,7 @@ from openerp.tools.translate import _
 import logging
 _logger = logging.getLogger(__name__)
 
-from fritzconnection import FritzConnection, FRITZ_IGD_DESC_FILE, FRITZ_TR64_DESC_FILE, FRITZ_IP_ADDRESS, FRITZ_TCP_PORT, FRITZ_USERNAME
+from fritzconnection import FritzConnection, FritzXmlParser, FRITZ_IGD_DESC_FILE, FRITZ_TR64_DESC_FILE, FRITZ_IP_ADDRESS, FRITZ_TCP_PORT, FRITZ_USERNAME
 
 class FritzBox(models.Model):
     _name = 'fritzbox.fritzbox'
@@ -26,7 +26,8 @@ class FritzBox(models.Model):
         if self.services == '':
             return FritzConnection(address=self.address, port=self.port, user=self.user, password=self.password, protocol='https', path='tr064/', descfiles=['tr64desc.xml'])
         else:
-            return FritzConnection(address=self.address, port=self.port, user=self.user, password=self.password, protocol='https', path='tr064/', descfiles=['tr64desc.xml'], services_jason=self.services)
+            _logger.debug('We have following JSON: %s' % self[0].services)
+            return FritzConnection(address=self.address, port=self.port, user=self.user, password=self.password, protocol='https', path='tr064/', descfiles=['tr64desc.xml'], services_json=self.services)
 
     @api.one    
     def call_action(self, serviceName, actionName, **kwargs):
@@ -45,6 +46,7 @@ class FritzBox(models.Model):
         connection = self.get_connection()
         modelName = connection[0].get_modelname()
         services = connection[0].get_services_json()
+        _logger.debug('We will save the following  JSON: %s' % services)
         if modelName:
             self.write({'model': modelName,
                         'services': services})
@@ -56,6 +58,18 @@ class FritzBox(models.Model):
         self.write({'model': '',
                     'services': ''})
         self.init_connection()
+   
+    @api.multi
+    def action_test_connection(self, args):
+        _logger.debug('Testing FritzBox connection...')
+        connection = self.get_connection()
+        _logger.debug('Service-Descriptions loaded')
+        result = connection[0].call_action('X_AVM-DE_OnTel','GetPhonebook',NewPhonebookID=0)
+        fxp = FritzXmlParser(url=result['NewPhonebookURL'])
+        nodes = fxp.root.iterfind('.//contact')
+        _logger.debug('Trying to print telephone-book:')
+        for node in nodes:
+            _logger.debug('#%s %s: %s' % (node.find('uniqueid').text, node.find('person/realName').text, node.find('telephony/number').text))
     
 #        fxp = FritzXmlParser(address=None,port=None,filename=result['NewPhonebookURL'])
 #        nodes = fxp.root.iterfind('.//contact')

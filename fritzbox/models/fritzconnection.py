@@ -30,6 +30,7 @@ Also you may have to send the password to get the complete api.
 __version__ = '0.4.6'
 
 import argparse
+import string
 import requests
 from requests.auth import HTTPDigestAuth
 
@@ -45,6 +46,7 @@ FRITZ_IGD_DESC_FILE = 'igddesc.xml'
 FRITZ_TR64_DESC_FILE = 'tr64desc.xml'
 FRITZ_USERNAME = 'dslf-config'
 
+import json
 
 # version-access:
 def get_version():
@@ -82,12 +84,28 @@ class FritzAction(object):
     method = 'post'
     user = ''
     password = ''
+    path = ''
+    protocol = 'https'
 
     def __init__(self, service_type, control_url):
         self.service_type = service_type
         self.control_url = control_url
         self.name = ''
         self.arguments = {}
+
+    def get_dict(self):
+        result = self.__dict__
+        for name, argument in self.arguments.iteritems():
+            result["arguments"][name] = argument.get_dict()
+        return result
+
+    def set_dict(self, dictionary):
+        result = dictionary
+        for name, argument in dictionary["arguments"].iteritems():
+            farg = FritzActionArgument()
+            farg.set_dict(argument)
+            result['arguments'][name] = farg
+        self.__dict__ = result
 
     @property
     def info(self):
@@ -119,11 +137,15 @@ class FritzAction(object):
         headers = self.header.copy()
         headers['soapaction'] = '%s#%s' % (self.service_type, self.name)
         data = self.envelope.strip() % self._body_builder(kwargs)
-        url = 'http://%s:%s%s' % (self.address, self.port, self.control_url)
+        url = '%s://%s:%s/%s/%s' % (self.protocol, self.address, self.port, self.path, self.control_url)
+        url = string.replace(url, '///', '/')
+        logstring_auth = 'without credentials'
         auth = None
         if self.password:
             auth=HTTPDigestAuth(self.user, self.password)
-        response = requests.post(url, data=data, headers=headers, auth=auth)
+            logstring_auth = 'with credentials %s:%s' % (self.user, self.password)
+        response = requests.post(url, data=data, headers=headers, auth=auth, verify=False)
+        _logger.debug('Trying to access %s %s. Response: %s' % (url, logstring_auth, response))
         # lxml needs bytes, therefore response.content (not response.text)
         result = self.parse_response(response.content)
         return result
@@ -165,6 +187,14 @@ class FritzActionArgument(object):
     def info(self):
         return (self.name, self.direction, self.data_type)
 
+    def get_dict(self):
+        result = self.__dict__
+        return result
+
+    def set_dict(self, dictonary):
+        self.__dict__ = dictonary        
+
+
 
 class FritzService(object):
     """Attribute class for service."""
@@ -179,6 +209,21 @@ class FritzService(object):
     def name(self):
         return self.service_type.split(':')[-2]
 
+    def get_dict(self):
+        result = self.__dict__
+        for name, action in self.actions.iteritems():
+            result["actions"][name] = action.get_dict()
+        return result
+
+    def set_dict(self, dictionary):
+        result = dictionary
+        for name, action in dictionary["actions"].iteritems():
+            fact = FritzAction(None,None)
+            fact.set_dict(action)
+            result['actions'][name] = fact
+        self.__dict__ = result
+
+
 
 class FritzXmlParser(object):
     """Base class for parsing fritzbox-xml-files."""
@@ -190,10 +235,10 @@ class FritzXmlParser(object):
     port=None
     path=''
 
-    def __init__(self, filename=None):
+    def __init__(self, filename=None, url=None):
         """Loads and parses an xml-file from a FritzBox."""
-        if self.address is None:
-            source = filename
+        if url is not None:
+            source = url
         else:
             source = '{0}://{1}:{2}/{3}{4}'.format(self.protocol, self.address, self.port, self.path,filename)
 	result = None
@@ -236,7 +281,7 @@ class FritzDescParser(FritzXmlParser):
 class FritzSCDPParser(FritzXmlParser):
     """Class for parsing SCDP.xml-files"""
 
-    def __init__(self, service, filename=None):
+    def __init__(self, service, url=None):
         """
         Reads and parses a SCDP.xml-file from FritzBox.
         'service' is a tuple of containing:
@@ -245,12 +290,12 @@ class FritzSCDPParser(FritzXmlParser):
         """
         self.state_variables = {}
         self.service = service
-        if filename is None:
+        if url is None:
             # access the FritzBox
-            super(FritzSCDPParser, self).__init__(service.scpd_url)
+            super(FritzSCDPParser, self).__init__(filename=service.scpd_url)
         else:
             # for testing read the xml-data from a file
-            super(FritzSCDPParser, self).__init__(filename=filename)
+            super(FritzSCDPParser, self).__init__(url=url)
 
     def _read_state_variables(self):
         """
@@ -325,6 +370,8 @@ class FritzConnection(object):
         FritzAction.port = port
         FritzAction.user = user
         FritzAction.password = password
+        FritzAction.protocol = protocol
+        FritzAction.path = path
         FritzXmlParser.address = address
         FritzXmlParser.port = port
         FritzXmlParser.user = user
@@ -338,11 +385,11 @@ class FritzConnection(object):
         self.protocol = protocol
         self.path = path
         self.modelname = None
+        self.services = {}
         if services_json:
             self.set_services_json(services_json)
             _logger.info('Loading services from JSON')
         else:
-            self.services = {}
             _logger.info('Initializing services. Contacting device...')
             self._read_descriptions(descfiles)
 
@@ -369,10 +416,19 @@ class FritzConnection(object):
             self.services[service.name] = service
 
     def get_services_json(self):
-        return json.dumps(self.services)
+        services_json = {}
+        _logger.debug('Trying to JSONize: %s' % self.services)
+        for name, service in self.services.items():
+            services_json[name] =  service.get_dict()
+            _logger.debug('Serializing service %s to: %s' % (name, services_json[name]))
+        return json.dumps(services_json)
 
     def set_services_json(self, services_json):
-        self.services = json.loads(services_json)
+        services_json = json.loads(services_json)
+        for name, sdict in services_json.iteritems():
+            service = FritzService(None,None,None)
+            service.set_dict(sdict)
+            self.services[name] = service
  
     def get_modelname(self):
         return self.modelname

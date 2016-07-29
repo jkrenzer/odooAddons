@@ -20,6 +20,7 @@
                         <group string="Test Connection">
                             <field name="model"/>
                             <button string="Initialize" name="action_init_connection" class="oe_inline oe_stat_button" type="object"/>
+                            <button string="Test" name="action_test_connection" class="oe_inline oe_stat_button" type="object"/>
                         </group>
                     </group>
                 </sheet>
