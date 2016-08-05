@@ -172,7 +172,7 @@ class PurchaseOrder(models.Model):
 	def create(self, values):
 		if 'name' not in values or values['name'] == '/':
 			recs = self.env['ir.sequence']
-			if not values['manual_name'] or values['manual_name'] == '/' or values['manual_name'] == '':
+			if 'manual_name' not in values or values['manual_name'] == '/' or values['manual_name'] == '':
 				if self._context.get('draft_po'):
         	                        values['name'] = recs.next_by_code('purchase.order')
 					values['manual_name'] = values['name']

@@ -25,8 +25,8 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'templates.xml',
-	'purchase_sequence.xml',
+        'view/purchase_order.xml',
+	'data/purchase_sequence.xml',
         #'purchase_order_extended.xml',
     ],
     # only loaded in demonstration mode
