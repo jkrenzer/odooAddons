@@ -6,27 +6,13 @@ class StockPicking(models.Model):
         _inherit = 'stock.picking'
         _name = 'stock.picking'
 	
-
-	_columns = {
-		'contact': osv.fields.many2one('res.users', 'In Charge', readonly=False, copy=True),
-		'partner_ref': osv.fields.char('Supplier Reference', 
-                                   copy=True,
-                                   help="Reference of the sales order or bid sent by your supplier. "
+	backorders_ids = fields.One2many('stock.picking', 'backorder_id', 'Backorders', readonly=True, copy=False)	
+	contact = fields.Many2one('res.users', 'In Charge', readonly=False, copy=True)
+	partner_ref = fields.Char('Supplier Reference', copy=True, help="Reference of the sales order or bid sent by your supplier. "
                                         "It's mainly used to do the matching when you receive the "
                                         "products as this reference is usually written on the "
-                                        "delivery order sent by your supplier."),
-		'delivery_note_ref': osv.fields.char('Delivery Note Reference', 
-                                   copy=True,
-                                   help="Delivery Note assigned to this picking, if any exists."),
-	}
-	_sql_constraints = [('delivery_note_company_uniq', 'unique (delivery_note_ref,company_id)', 'The Delivery Note reference number must be unique per company !')]
+                                        "delivery order sent by your supplier.")
+	delivery_note_ref = fields.Char('Delivery Note Reference', copy=True, help="Delivery Note assigned to this picking, if any exists.")
+	delivery_notes_ids = fields.Many2many(comodel_name='stock.delivery_note', inverse_name='pickings', string='Delivery Notes', help="All DNs mentioning this picking")
 
-	def do_print_delivery_note(self, cr, uid, ids, context=None):
-	        '''This function prints the delivery note'''
-        	context = dict(context or {}, active_ids=ids)
-		if not self.contact:
-			self.write({'contact': self.env.uid})
-		if not self.delivery_note_ref:
-			recs = self.env['ir.sequence']
-	                self.write({'delivery_note_ref': recs.next_by_code('stock.picking.delivery_note')})
-	        return self.pool.get("report").get_action(cr, uid, ids, 'stock_picking_delivery_note.report_delivery_note', context=context)
+	_sql_constraints = [('delivery_note_company_uniq', 'unique (delivery_note_ref,company_id)', 'The Delivery Note reference number must be unique per company !')]

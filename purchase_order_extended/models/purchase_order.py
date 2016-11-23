@@ -49,6 +49,29 @@ class PurchaseOrder(models.Model):
 	approver = fields.Many2one('res.users', 'Approved by', readonly=True, copy=False)
 	contact = fields.Many2one('res.users', 'In Charge', readonly=False, copy=True, states=READONLY_STATES)
 	parent = fields.Many2one('purchase.order', 'Parent Object', readonly=False, copy=False)
+        children = fields.One2many('purchase.order', 'parent', 'Derived Objects', readonly=False, copy=False)
+	children_count = fields.Integer(compute='_children_count', string="Number of derived children")
+
+	@api.multi
+	@api.depends('children')
+	def _children_count(self):
+		for rec in self:
+			rec.children_count = rec.children and len(rec.children) or 0
+	@api.multi
+	def view_children(self):
+		self.ensure_one() #Ensure we have only one object
+		action = {
+                        "type": "ir.actions.act_window",
+                        "res_model": "purchase.order",
+                        "views": [[False, "form"]],
+                }
+		if len(self.children) > 1:
+			action['domain'] = "[('id','in',[" + ','.join(map(str, self.children)) + "])]"
+		else:
+			action['views'] = [(False, 'form')]
+			action['res_id'] =  self.children[0].id or False
+
+                return action
 
 	@api.one
 	def send_order(self):
@@ -72,72 +95,37 @@ class PurchaseOrder(models.Model):
 		self.write({'state': 'approved', 'date_approve': fields.Date.context_today(self),'approver': self.env.uid})
 		self.message_post(body=_("Purchase Order approved by %s ") % self.approver.name ,subtype="mail.mt_comment")
 		return True
-
-#	@api.multi
-#	def clone_to_draft_po(self):
-#		self.message_post(body=_("Cloned to draft Purchase Order"),subtype="mail.mt_comment")
-#		return super(PurchaseOrder, self).copy(default={'type': 'purchase'})
-
-	@api.one
-	def clone_to_draft_po(self):
-		self.ensure_one()
-		old_name = self.name
-		recs = self.env['ir.sequence']
-		new_name = recs.next_by_code('purchase.order')
-		self.write({
-			'name': new_name,
-			'manual_name': new_name,
-			'type': 'purchase',
-                        'unrevisioned_name': new_name,
-			})
-	        # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
-	        # 'purchase.order' method to overwrite our values, like name and state
-		defaults = {
-			'name': old_name,
-			'manual_name': old_name,
-			'type': 'rfq',
-                        'unrevisioned_name': new_name,
-			}
-		old_revision = super(PurchaseOrder, self).copy(default=defaults)
-		self.write({
-                        'parent': old_revision.id,
-			'state': 'draftpo',
-                        })
-		msg = _('Cloned RFQ-Bid %s to Purchase Order %s') % (old_name, self.name)
-		self.message_post(body=msg)
-		old_revision.message_post(body=msg)
-		return True
-
-	@api.multi
+        @api.multi
         def clone_to_draft_po(self):
-                self.ensure_one()
-                old_name = self.name
+                self.ensure_one() #Ensure we have only one object
                 recs = self.env['ir.sequence']
                 new_name = recs.next_by_code('purchase.order')
-                self.write({
+                # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
+                # 'purchase.order' method to overwrite our values, like name and state
+                new_values = {
                         'name': new_name,
                         'manual_name': new_name,
                         'type': 'purchase',
-			'unrevisioned_name': new_name,
-                        })
-                # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
-                # 'purchase.order' method to overwrite our values, like name and state
-                defaults = {
-                        'name': old_name,
-                        'manual_name': old_name,
-                        'type': 'rfq',
-			'unrevisioned_name': new_name,
-                        }
-                old_revision = super(PurchaseOrder, self).copy(default=defaults)
-                self.write({
-                        'parent': old_revision.id,
-                        'state': 'draftpo',
-			'contact': self.env.uid,
-                        })
-                msg = _('Cloned RFQ-Bid(s) %s to Purchase Order %s') % (old_name, self.name)
+                        'state': self.state,
+                        'parent': self.id,
+			'date_order': fields.Date.context_today(self),
+                }       
+                if self.unrevisioned_name:
+                        new_values['unrevisioned_name'] =  new_name
+                new_revision = super(PurchaseOrder, self).copy(default=new_values)
+                new_revision.minimum_planned_date = self.minimum_planned_date
+                self.children += new_revision
+                msg = _('Cloned RFQ-Bid(s) %s to Purchase Order %s') % (self.name, new_name)
+                new_revision.message_post(body=msg)
                 self.message_post(body=msg)
-                old_revision.message_post(body=msg)
-                return True
+                action = {
+			"type": "ir.actions.act_window",
+			"res_model": "purchase.order",
+			"views": [[False, "form"]],
+			"res_id": new_revision.id,
+		}
+                return action
+
 
 	@api.one
 	def copy(self,default=None):
