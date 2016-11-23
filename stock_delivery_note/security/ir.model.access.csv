@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stock_picking_delivery_note_stock_picking_delivery_note,stock_picking_delivery_note.stock_picking_delivery_note,model_stock_picking_delivery_note_stock_picking_delivery_note,,1,0,0,0
+access_user_stock_delivery_note,User access rule delivery notes,stock_delivery_note.model_stock_delivery_note,group_stock_delivery_note_user,1,1,1,0
+access_manager_stock_delivery_note,Manager access rule delivery notes,stock_delivery_note.model_stock_delivery_note,stock_delivery_note.group_stock_delivery_note_manager,1,1,1,1

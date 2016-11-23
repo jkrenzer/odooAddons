@@ -31,6 +31,13 @@
                                 <xpath expr="//field[@name='validator']" position="after">
                                         <field name="approver" />
                                 </xpath>
+				<xpath expr="//div[contains(@class, 'oe_title')]" position="before">
+					<div class="oe_right oe_button_box" name="buttons">
+						<button type="object" name="view_children" class="oe_stat_button" icon="fa-files-o" attrs="{'invisible': [('children_count', '=', 0)]}">
+							<field name="children_count" widget="statinfo" string="Derived objects" help="See all objects dreived from this one"/>
+						</button>
+					</div>
+				</xpath>
 		        </field>
 		</record>
 		<record id="view_purchase_order_extended_inherited" model="ir.ui.view">

@@ -27,11 +27,14 @@ class SaleOrder(models.Model):
     _name = "sale.order"
     _inherit = "sale.order"
     READONLY_STATES = {
-	'confirmed': [('readonly', True)],
-	'ordered': [('readonly', True)],
+	'sent': [('readonly', True)],
+	'progress': [('readonly', True)],
 	'done': [('readonly', True)]
     }
-    manual_name = fields.Char('Manual Name', states=READONLY_STATES,related='name', store=False, help='Use this field to manually override the assigned name of the object.')
+
+    name = fields.Char('Order Reference', required=True, copy=False, readonly=False, states=READONLY_STATES, select=True, help='Unique number of sale order, computed automatically when the order is created.')
+    manual_name = fields.Char('Manual Name', states=READONLY_STATES, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
+#    manual_name = fields.Char('Manual Name', readonly=False, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
     parent =  fields.Many2one('sale.order', 'Parent Object', readonly=False, copy=False)
 
     @api.multi
