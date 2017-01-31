@@ -1,28 +1,17 @@
 <openerp>
     <data>
         <template id="layout">
-            <!-- Multicompany -->
-            <t t-if="o and 'company_id' in o">
-                <t t-set="company" t-value="o.company_id"/>
-            </t>
-            <t t-if="not o or not 'company_id' in o">
-                <t t-set="company" t-value="res_company"/>
-            </t>
-            <t t-if="o and 'validator' in o">
-                <t t-set="contact" t-value="o.validator"/>
-            </t>
-            <t t-if="o and 'contact' in o and o.contact.name">
-                <t t-set="contact" t-value="o.contact"/>
-            </t>
-            <t t-call="report.external_layout">
-                <div class="page" style="font-family:'Eras Medium ITC',sans-serif;font-size:11pt;line-height:1.15 !important;background:transparent !important;">
-                    <!-- letter-header -->
-                    <t t-call="report_german_letter.layout_header"/>
-                    <!-- content -->
-                    <t t-raw="0"/>
-                    <!-- letter-footer -->
-                    <t t-call="report_german_letter.layout_footer"/>
-                </div>
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="page" style="font-family:'Eras Medium ITC',sans-serif;font-size:11pt;line-height:1.15 !important;background:transparent !important;">
+                        <!-- letter-header -->
+                        <t t-call="report_german_letter.layout_header"/>
+                        <!-- content -->
+                        <t t-raw="0"/>
+                        <!-- letter-footer -->
+                        <t t-call="report_german_letter.layout_footer"/>
+                    </div>
+                </t>
             </t>
         </template>
     </data>

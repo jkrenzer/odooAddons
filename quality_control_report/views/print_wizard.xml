@@ -1,0 +1,24 @@
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="wizard_form_view">
+      <field name="name">wizard.form</field>
+      <field name="model">qc.report.printwizard</field>
+      <field name="arch" type="xml">
+        <form string="Print Quality Report">
+          <group>
+            <field name="report" required="True"/>
+            <field name="template" required="True"/>
+            <button name="print_report" class="oe_highlight" type="object" string="Print"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <act_window id="launch_print_wizard"
+                name="Print Wizard"
+                src_model="qc.report"
+                res_model="qc.report.printwizard"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"/>
+  </data>
+</openerp>

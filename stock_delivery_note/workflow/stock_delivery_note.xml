@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="stock_delivery_note_workflow" model="workflow">
+			<field name="name">stock.delivery_note.workflow</field>
+			<field name="osv">stock.delivery_note</field>
+			<field name="on_create">True</field>
+		</record>
+		<!-- Activities -->
+		<record id="stock_delivery_note_state_draft" model="workflow.activity">
+			<field name="wkf_id" ref="stock_delivery_note_workflow"/>
+			<field name="flow_start">True</field>
+			<field name="name">Draft</field>
+			<field name="kind">function</field>
+			<field name="action">_state_draft()</field>
+		</record>
+		<record id="stock_delivery_note_state_confirm" model="workflow.activity">
+                        <field name="wkf_id" ref="stock_delivery_note_workflow"/>
+                        <field name="name">Confirm</field>
+                        <field name="kind">function</field>
+                        <field name="action">_state_confirm()</field>
+                </record>
+		<record id="stock_delivery_note_state_done" model="workflow.activity">
+                        <field name="wkf_id" ref="stock_delivery_note_workflow"/>
+                        <field name="name">Draft</field>
+                        <field name="kind">function</field>
+                        <field name="action">_state_done()</field>
+                </record>
+		<record id="stock_delivery_note_state_cancel" model="workflow.activity">
+                        <field name="wkf_id" ref="stock_delivery_note_workflow"/>
+                        <field name="name">Cancel</field>
+                        <field name="kind">function</field>
+                        <field name="action">_state_cancel()</field>
+                </record>
+		<!-- Transitions -->
+		<record id="tock_delivery_note_trans_draft_confirm" model="workflow.transition">
+			<field name="signal">action_confirm</field>
+			<field name="act_from" ref="stock_delivery_note_state_draft"/>
+			<field name="act_to" ref="stock_delivery_note_state_confirm"/>
+		</record>
+		 <record id="tock_delivery_note_trans_confirm_done" model="workflow.transition">
+                        <field name="signal">action_done</field>
+                        <field name="act_from" ref="stock_delivery_note_state_confirm"/>
+                        <field name="act_to" ref="stock_delivery_note_state_done"/>
+                </record>
+                 <record id="tock_delivery_note_trans_done_cancel" model="workflow.transition">
+                        <field name="signal">action_cancel</field>
+                        <field name="act_from" ref="stock_delivery_note_state_done"/>
+                        <field name="act_to" ref="stock_delivery_note_state_cancel"/>
+                </record>
+                 <record id="tock_delivery_note_trans_draft_cancel" model="workflow.transition">
+                        <field name="signal">action_cancel</field>
+                        <field name="act_from" ref="stock_delivery_note_state_draft"/>
+                        <field name="act_to" ref="stock_delivery_note_state_cancel"/>
+                </record>
+                 <record id="tock_delivery_note_trans_confirm_cancel" model="workflow.transition">
+                        <field name="signal">action_cancel</field>
+                        <field name="act_from" ref="stock_delivery_note_state_confirm"/>
+                        <field name="act_to" ref="stock_delivery_note_state_cancel"/>
+                </record>
+                 <record id="tock_delivery_note_trans_cancel_draft" model="workflow.transition">
+                        <field name="signal">action_reopen</field>
+                        <field name="act_from" ref="stock_delivery_note_state_cancel"/>
+                        <field name="act_to" ref="stock_delivery_note_state_draft"/>
+                </record>
+	</data>
+</openerp>

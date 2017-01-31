@@ -1,0 +1,97 @@
+<openerp>
+	<data>
+	       <report
+ 			id="report_delivery_note"
+			model="stock.delivery_note"
+			string="Delivery Note"
+			name="stock_delivery_note.report_delivery_note_wrap"
+			file="('%s_%s.pdf' % (object.name, object.partner_id))"
+			attachment_use="True"
+			attachment="('%s_%s.pdf' % (object.name, object.partner_id))"
+			report_type="qweb-pdf" />
+
+		<template id="report_delivery_note_wrap">
+    		    <t t-call="report.html_container">
+	                <t t-foreach="doc_ids" t-as="doc_id">
+                            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'stock_delivery_note.report_delivery_note_document')"/>
+                        </t>
+                    </t>
+                </template>
+
+               <template id="report_delivery_note_document" >
+		    <t t-call="report_german_letter.layout">
+                    <t t-set="date">
+			<span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+		    </t>
+		    <t t-set="partner_address">
+		        <div style="font-weight:bold;" t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],&quot;no_marker&quot;: true}"/>
+                        <p t-if="o.partner_id.fax" style="font-weight:bold;">FAX: 
+                            <span t-field="o.partner_id.fax"/>
+                        </p>
+		    </t>
+                    <t t-set="contact_name" t-value="o.responsible.partner_id.name"/>
+		    <t t-set="letter_signature" t-value="o.responsible.partner_id.name"/>
+                    <t t-set="contact_phone" t-value="o.responsible.partner_id.phone"/>
+                    <t t-set="contact_email" t-value="o.responsible.partner_id.email"/>
+                    <t t-set="subject">
+                            Delivery Note <span t-field="o.name"/>
+                    </t>
+
+		    <div class="row">
+                        <div id="text_body" class="col-xs-12">
+	                        <p>Dear Sir or Madame,</p>
+        	                <p>
+                	            with this note we document the delivery of following shipments:
+	                        </p>
+			</div>
+		    </div>
+		    <div class="row" style="margin-top:7mm;">
+			<div class="col-xs-12">
+				<ol>
+					<li t-if="o.pickings" t-foreach="o.pickings" t-as="pick">Shipment  <span t-field="pick.name"/><span t-if="pick.origin"> in reference to <span t-field="pick.origin"/></span><span t-if="pick.backorder_id">, backorder of <span t-field="pick.backorder_id.name"/></span><span t-if="pick.state == 'done' and pick.date_done"> shipped on <span t-field="pick.date_done" t-field-options='{"widget": "date"}'/></span><span t-if="pick.state not in ['cancel','done'] and pick.min_date"> planned to be shipped on <span t-field="pick.min_date" t-field-options='{"widget": "date"}'/></span>. <span t-if="pick.backorders_ids"> There are following backorders for this shipment: <span t-foreach="pick.backorders_ids" t-as="bo"><span t-field="bo.name"/> </span>.</span>
+	        	                	<table style="font-size:10.0pt;width:100%;border-spacing:1em">
+	        	        	            <thead>
+        	        	        	    <tr style="border-bottom:1px solid black;padding:0.5em;">
+	        	                	        <th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+        	        	                	<strong>Pos.</strong>
+	        	        	                </th>
+        	        	        	        <th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+	                	        	        	<strong>Qty</strong>
+		                        	        	</th>
+        		                        	<th style="border-bottom:1px solid black;padding:0.5em;white-space: nowrap;">
+	        		                        <strong>Product</strong>
+	        	        		                </th>
+        	        	        	    </tr>
+			                            </thead>
+		        	                    <tr t-foreach="pick.move_lines" t-as="line">
+	        	        	            <td style="padding:0.5em;">
+	                	        	        <span t-esc="line_index + 1"/>
+		                        	    </td	>
+			                            <td style="padding:0.5em;">
+			                                <span style="font-weight:bold;" t-esc="str(line.product_uom_qty).replace('.',',')"/>&amp;nbsp;<span t-field="line.product_uom.name" groups="product.group_uom"/>
+	        		                    </td>
+	                		            <td style="padding:0.5em;">
+	                        		        <div t-field="line.name"/>
+							<ol t-if="line.quant_ids">
+								<t t-foreach="line.quant_ids" t-as="quant">
+									<li t-if="quant.lot_id or quant.package_id"><span t-if="quant.lot_id">Serial-No.:<span t-field="quant.lot_id"/>&amp;nbsp;</span><span t-if="quant.package_id">Package: <span t-field="quant.package_id"/></span></li>
+								</t>
+							</ol>
+			                            </td>
+			                        </tr>
+	        	                </table>
+					</li>
+				</ol>
+				</div>
+			</div>
+			<div class="row">
+				<div t-raw="o.notes"/>
+			</div>
+			<div class="row">
+        	                	<p>In case of any uncertainties or problems, please contact us.</p>
+                       	</div>
+
+                    </t>
+		</template>
+	</data>
+</openerp>

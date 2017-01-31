@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    "version": "8.0.0.1",
+    "version": "8.0.0.2",
 
     # any module necessary for this one to work correctly
     'depends': ['base','purchase','purchase_rfq_bid_workflow','purchase_order_revision'],
@@ -25,8 +25,8 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'templates.xml',
-	'purchase_sequence.xml',
+        'view/purchase_order.xml',
+	'data/purchase_sequence.xml',
         #'purchase_order_extended.xml',
     ],
     # only loaded in demonstration mode

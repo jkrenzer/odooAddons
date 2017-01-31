@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_hr_timesheet_sign_out_task" model="ir.ui.view">
+			<field name="name">hr.sign.out.project.form.task</field>
+			<field name="model">hr.sign.out.project</field>
+			<field name="inherit_id" ref="hr_timesheet.view_hr_timesheet_sign_out"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='info']" position="before">
+					<field name="task_id" colspan="2"/>
+					<field name="issue_id" colspan="2"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>	

@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_inventory_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-11 11:08+0000\n"
+"PO-Revision-Date: 2017-01-11 11:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_inventory_extended
+#: view:stock.inventory:stock_inventory_extended.view_stock_inventory_extended
+msgid "Browse Lines"
+msgstr "Positionen"
+
+#. module: stock_inventory_extended
+#: view:stock.inventory:stock_inventory_extended.view_stock_inventory_extended
+#: field:stock.inventory.line,checked:0
+msgid "Checked"
+msgstr "Checked"
+
+#. module: stock_inventory_extended
+#: model:ir.model,name:stock_inventory_extended.model_stock_inventory
+msgid "Inventory"
+msgstr "Bestand"
+
+#. module: stock_inventory_extended
+#: model:ir.model,name:stock_inventory_extended.model_stock_inventory_line
+msgid "Inventory Line"
+msgstr "Lagerbestandspos."
+
+#. module: stock_inventory_extended
+#: field:stock.inventory,lines_count:0
+msgid "Number of inventory lines"
+msgstr "Anzahl der Positionen"
+
+#. module: stock_inventory_extended
+#: view:stock.inventory:stock_inventory_extended.view_stock_inventory_extended
+msgid "See all inventory lines and search them"
+msgstr "Alle Positionen ansehen und durchsuchen"
+

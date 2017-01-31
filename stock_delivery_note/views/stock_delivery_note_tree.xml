@@ -1,0 +1,18 @@
+<openerp>
+	<data>
+
+                <record id="stock_delivery_note_tree_view" model="ir.ui.view">
+                        <field name="name">stock.delivery_note.tree</field>
+                        <field name="model">stock.delivery_note</field>
+                        <field name="arch" type="xml">
+                                <tree colors="grey:state=='cancel';blue:state=='draft'">
+					<field name="name"/>
+					<field name="partner_id"/>
+					<field name="date"/>
+					<field name="state"/>					
+				</tree>
+                        </field>
+                </record>
+        </data>
+</openerp>
+

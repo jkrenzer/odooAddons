@@ -13,6 +13,11 @@
 				<xpath expr="//button[@name='do_print_picking']" position="after">
                                         <button name="do_print_delivery_note" string="Print Delivery Note" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('picking_type_code', '=', 'outgoing'), ('state', '!=', 'assigned')]}"/>
                                 </xpath>
+				<notebook position="inside">
+		                    	<page string="Backorders">
+                		        	<field name="backorders_ids"></field>
+					</page>
+				</notebook>
                         </field>
                 </record>
 	</data>

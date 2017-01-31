@@ -1,0 +1,74 @@
+<openerp>
+  <data>
+    <record model="workflow" id="wkf_qc_report">
+      <field name="name">Quality Control Report Workflow</field>
+      <field name="osv">qc.report</field>
+      <field name="on_create">True</field>
+    </record>
+
+    <record model="workflow.activity" id="draft">
+      <field name="name">Draft</field>
+      <field name="wkf_id" ref="wkf_qc_report"/>
+      <field name="flow_start" eval="True"/>
+      <field name="kind">function</field>
+      <field name="action">action_draft()</field>
+    </record>
+
+    <record model="workflow.activity" id="confirm">
+      <field name="name">Draft</field>
+      <field name="wkf_id" ref="wkf_qc_report"/>
+      <field name="kind">function</field>
+      <field name="action">action_confirm()</field>
+    </record>
+
+    <record model="workflow.activity" id="approve">
+      <field name="name">Draft</field>
+      <field name="wkf_id" ref="wkf_qc_report"/>
+      <field name="kind">function</field>
+      <field name="action">action_approve()</field>
+    </record>
+
+    <record model="workflow.activity" id="cancel">
+      <field name="name">Draft</field>
+      <field name="wkf_id" ref="wkf_qc_report"/>
+      <field name="kind">function</field>
+      <field name="action">action_cancel()</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_draft_to_confirm">
+      <field name="act_from" ref="draft"/>
+      <field name="act_to" ref="confirm"/>
+      <field name="signal">confirm</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_draft_to_cancel">
+      <field name="act_from" ref="draft"/>
+      <field name="act_to" ref="cancel"/>
+      <field name="signal">cancel</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_confirm_to_approve">
+      <field name="act_from" ref="confirm"/>
+      <field name="act_to" ref="approve"/>
+      <field name="signal">approve</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_confirm_to_cancel">
+      <field name="act_from" ref="confirm"/>
+      <field name="act_to" ref="cancel"/>
+      <field name="signal">cancel</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_approve_to_cancel">
+      <field name="act_from" ref="approve"/>
+      <field name="act_to" ref="cancel"/>
+      <field name="signal">cancel</field>
+    </record>
+
+    <record model="workflow.transition" id="qc_report_cancel_to_draft">
+      <field name="act_from" ref="cancel"/>
+      <field name="act_to" ref="draft"/>
+      <field name="signal">draft</field>
+    </record>
+  </data>       
+</openerp>

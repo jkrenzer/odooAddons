@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Actions, must bedeclared before menu items -->
+
+    <record model="ir.actions.act_window" id="action_list_delivery_notes">
+      <field name="name">Delivery Notes</field>
+      <field name="res_model">stock.delivery_note</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add an delivery note.
+              </p><p>
+                Delivery notes can be used to generate a nice report of all due or executed shippings
+		to the receiver.
+              </p>
+            </field>
+
+    </record>
+
+    <!-- Menus  -->
+
+    <menuitem name="Delivery Notes" parent="stock.menu_stock_root" id="stock_delivery_notes_menu_parent" groups="group_stock_delivery_note_user"  sequence="10"/>
+    <menuitem name="Delivery Notes" id="stock_delivery_notes_view" action="action_list_delivery_notes" parent="stock_delivery_notes_menu_parent" sequence="10"/>
+
+  </data>
+</openerp>
+
