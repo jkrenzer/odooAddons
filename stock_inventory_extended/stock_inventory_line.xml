@@ -1,0 +1,44 @@
+<openerp>
+	<data>
+		<record id="view_stock_inventory_line_tree_extended" model="ir.ui.view">
+		        <field name="name">stock.inventory.line.tree</field>
+		        <field name="model">stock.inventory.line</field>
+		        <field name="inherit_id" ref="stock.stock_inventory_line_tree"/>
+		        <field name="arch" type="xml">
+				<xpath expr="//field[@name='location_id']" position="after">
+					<field name="checked"/>
+				</xpath>
+				<xpath expr="//field[@name='product_id']" position="after">
+                                        <field name="prod_lot_id"/>
+					<field name="package_id"/>
+					<field name="partner_id"/>
+                                </xpath>
+				<xpath expr="//field[@name='product_qty']" position="before">
+                                        <field name="theoretical_qty"/>
+                                </xpath>
+				<xpath expr="//tree" position="attributes">
+					<attribute name="editable">top</attribute>
+					<attribute name="colors">darkgreen:checked</attribute>
+					<attribute name="fonts">bold:checked</attribute>
+				</xpath>
+                        </field>
+                </record>
+		<record id="view_stock_inventory_search_extended" model="ir.ui.view">
+                        <field name="name">stock.inventory.line.select</field>
+                        <field name="model">stock.inventory.line</field>
+			<field name="type">search</field>
+                        <field name="arch" type="xml">
+				<search string="Search Inventory Line">
+					<field name="product_id" widget="selection"/>
+					<field name="partner_id" widget="selection"/>
+					<field name="prod_lot_id" widget="selection"/>
+					<field name="location_id" widget="selection"/>
+                                        <field name="inventory_id" widget="selection"/>
+					<field name="package_id" widget="selection"/>
+					<filter string="Open" domain="[('checked','=',False)]"/>
+					<filter string="Done" domain="[('checked','=',True)]"/>
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

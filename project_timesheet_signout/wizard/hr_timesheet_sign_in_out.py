@@ -9,15 +9,34 @@ class SignoutWizard(models.TransientModel):
 	_description = 'Sign Out By Project and Task'
 	
 	task_id = fields.Many2one(comodel_name='project.task', string='Task')
+	issue_id = fields.Many2one(comodel_name='project.issue', string='Issue')
 
 	@api.multi
 	@api.onchange('account_id')
 	def _onchange_account(self):
 		for obj in self:
 			if self.account_id:
-				return {'domain':{'task_id':[('project_id.analytic_account_id.id','=',obj.account_id.id)]}}
+				return {
+						'domain': {
+							'task_id': [
+								('project_id.analytic_account_id.id','=',obj.account_id.id)
+							],
+							'issue_id': [
+                                                                ('project_id.analytic_account_id.id','=',obj.account_id.id)
+                                                        ],
+						}
+					}
 			else:
-				return {'domain':{'task_id':[(1,'=',1)]}}
+				return {
+						'domain': {
+							'task_id': [ 
+								(1,'=',1)
+							],
+							'issue_id': [ 
+                                                                (1,'=',1)
+                                                        ],
+						}
+					}
 	
 	@api.multi
 	@api.onchange('task_id')
@@ -25,7 +44,13 @@ class SignoutWizard(models.TransientModel):
 		for obj in self:
 			if obj.task_id.project_id and obj.task_id.project_id.analytic_account_id:
 				obj.account_id = obj.task_id.project_id.analytic_account_id
-			return {'domain':{'task_id':[('project_id.analytic_account_id','=',obj.account_id)]}}
+
+	@api.multi
+	@api.onchange('issue_id')
+	def _onchange_issue(self):
+		for obj in self:
+			if obj.issue_id.project_id and obj.issue_id.project_id.analytic_account_id:
+				obj.account_id = obj.issue_id.project_id.analytic_account_id
 	
 
 	@api.model
@@ -36,4 +61,8 @@ class SignoutWizard(models.TransientModel):
 			timesheet_act.task_id =  data['task_id']
 		elif data['task_id']:
 			raise Warning(_('Please check module dependencies. Task-Timesheet relation is not implemented!'))
+		if hasattr(timesheet_act, 'issue_id') and data['issue_id']:
+                        timesheet_act.issue_id =  data['issue_id']
+                elif data['issue_id']:
+                        raise Warning(_('Please check module dependencies. Issue-Timesheet relation is not implemented!'))
 		return timesheet_act_id

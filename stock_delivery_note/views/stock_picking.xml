@@ -1,0 +1,24 @@
+<openerp>
+	<data>
+		<record id="view_stock_picking_delivery_note" model="ir.ui.view">
+                        <field name="name">stock_picking_delivery_note.picking.form</field>
+                        <field name="model">stock.picking</field>
+                        <field name="inherit_id" ref="stock.view_picking_form"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//field[@name='picking_type_id']" position="after">
+                                        <field name="contact"/>
+					<field name="delivery_note_ref"/>
+					<field name="partner_ref"/>
+                                </xpath>
+				<xpath expr="//button[@name='do_print_picking']" position="after">
+                                        <button name="do_print_delivery_note" string="Print Delivery Note" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('picking_type_code', '=', 'outgoing'), ('state', '!=', 'assigned')]}"/>
+                                </xpath>
+				<notebook position="inside">
+		                    	<page string="Backorders">
+                		        	<field name="backorders_ids"></field>
+					</page>
+				</notebook>
+                        </field>
+                </record>
+	</data>
+</openerp>

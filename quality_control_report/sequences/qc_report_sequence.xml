@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="seq_type_qc_report" model="ir.sequence.type">
+            <field name="name">Quality Control Report</field>
+            <field name="code">qc.report</field>
+        </record>
+
+        <record id="seq_qc_report" model="ir.sequence">
+            <field name="name">Quality Control Report</field>
+            <field name="code">qc.report</field>
+            <field name="prefix">QCR-</field>
+            <field name="padding">6</field>
+        </record>
+    </data>
+</openerp>

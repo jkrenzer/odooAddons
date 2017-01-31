@@ -17,6 +17,7 @@
             <t t-set="contact" t-value="o.contact"/>
         </t>
     <t t-call="report_german_letter.layout">
+    <t t-set="partner" t-value="o.partner_id"/>
     <t t-set="subject">
         Angebotsanfrage <span t-field="o.name"/>
     </t>

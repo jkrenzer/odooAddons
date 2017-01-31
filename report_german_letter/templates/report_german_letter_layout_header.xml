@@ -10,9 +10,9 @@
                     <b> &amp;bull; </b> 30419 Hannover
                 </span>
             </div>
-            <div style="font-weight:bold;" t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],&quot;no_marker&quot;: true}"/>
-            <p t-if="o.partner_id.fax" style="font-weight:bold;">FAX: 
-                <span t-field="o.partner_id.fax"/>
+            <div style="font-weight:bold;" t-field="partner" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],&quot;no_marker&quot;: true}"/>
+            <p t-if="partner.fax" style="font-weight:bold;">FAX: 
+                <span t-field="partner.fax"/>
             </p>
         </div>
         <div class="col-xs-5" style="fontsize:11pt;margin-left:0;">
@@ -42,7 +42,7 @@
                     <span t-if="o.name" t-field="o.name"/>
                 </div>
                 <div style="display:table-cell;">
-                    <span t-if="o.date_order" t-field="o.date_order" t-field-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
+                    <span t-if="o.date" t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd.MM.yyyy&quot;}"/>
                 </div>
             </div>
         </div>

@@ -1,0 +1,252 @@
+<openerp>
+  <data>
+
+    <template id="report_template_detailed">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="report.external_layout">
+            <div class="page container">
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <h1><small>Quality Control Report, Detailed  Edition</small><br/>
+                  <span t-field="o.name"/></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p class="text-jutify">Detailed edition of quality-control-report <span t-field="o.name"/> covering following positions and inspections. For further details please refer to the mentioned inspection reports.</p>
+                  <p t-if="o.lots">
+                    <h2>Inspected Positions</h2>
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                       <th>Serial/Lot-No.</th>
+                       <th>Product</th>
+                      </thead>
+                      <tbody t-foreach="o.lots" t-as="lot">
+                        <tr>
+                          <td><span t-field="lot.name"/></td>
+                          <td><span t-if="lot.product_id" t-field="lot.product_id.name"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Description</h2>
+                  <span t-field="o.description"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Inspections</h2>
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Inspection No.</th>
+                        <th>Test</th>
+                        <th>Date</th>
+                        <th>State</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="o.inspections" t-as="inspection">
+                        <tr t-att-class="(inspection.state == 'success') and 'success' or (inspection.state == 'failed') and 'danger' or ''">
+                          <td><span t-field="inspection.name"/></td>
+                          <td><span t-field="inspection.test.name"/></td>
+                          <td><span t-field="inspection.date" t-field-options='{"widget": "date"}'/></td>
+                          <td><span t-esc="(inspection.state == 'success')  and 'OK' or (inspection.state == 'failed') and 'FAIL' or ''"/></td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                For detailed information see appendix.
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Conclusion</h2>
+                  <span t-field="o.conclusion"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <table>
+                    <tr>
+                      <td style="padding:5mm;" t-if="o.writer">Written:&amp;nbsp;<span t-field="o.date_written" t-field-options='{"widget": "date"}'/></td>
+                      <td style="padding:5mm;" t-if="o.approver">Approved:&amp;nbsp;<span t-field="o.date_approved"  t-field-options='{"widget": "date"}'/></td>
+                    </tr>
+                    <tr>
+                      <td style="padding:5mm;" t-if="o.writer" class="text-center">(<span t-field="o.writer"/>)</td>
+                      <td style="padding:5mm;" t-if="o.approver" class="text-center">(<span t-field="o.approver"/>)</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 small">
+                  <h2>Appendix</h2>
+                  <t t-foreach="o.inspections" t-as="inspection">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr style="page-break-inside: avoid;">
+                          <th colspan="2">Inspection:</th>
+                          <th colspan="2"><span t-field="inspection.name"/></th>
+                          <th colspan="2">State:</th>
+                          <th colspan="2"><span t-esc="(inspection.state == 'success')  and 'OK' or (inspection.state == 'failed') and 'FAIL' or ''"/></th>
+                        </tr>
+                        <tr t-if="inspection.product or inspection.lot" style="page-break-inside: avoid;">
+                          <th colspan="2">Product:</th>
+                          <th colspan="2"><span t-field="inspection.product.name"/></th>
+                          <th colspan="2">Lot:</th>
+                          <th colspan="2"><span t-field="inspection.lot"/></th>
+                        </tr>
+                        <tr t-if="inspection.production or inspection.picking" style="page-break-inside: avoid;">
+                          <th colspan="2">Production:</th>
+                          <th colspan="2"><span t-field="inspection.production"/></th>
+                          <th colspan="2">Picking:</th>
+                          <th colspan="2"><span t-field="inspection.picking"/></th>
+                        </tr>
+                        <tr style="page-break-inside: avoid;">
+                          <th colspan="2">Question</th> 
+                          <th>Type</th> 
+                          <th>Value</th> 
+                          <th>Unit</th> 
+                          <th colspan="2">Valid Range</th> 
+                          <th>State</th> 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-foreach="inspection.inspection_lines" t-as="line">
+                          <tr t-att-class="(line.tolerance_status == 'optimal') and 'success' or (line.tolerance_status == 'tolerable') and 'warning' or (line.tolerance_status == 'not_tolerable') and 'danger'  or ''">
+                            <td colspan="2"><span t-field="line.name"/></td>
+                            <td><span t-field="line.question_type"/></td>
+                            <td><span t-esc="(line.question_type == 'quantitative') and line.quantitative_value or (line.question_type == 'qualitative') and line.qualitative_value or ''"/></td>
+                            <td><span t-field="line.uom_id.name"/></td>
+                            <td colspan="2"><span t-field="line.valid_values"/></td>
+                            <td><span t-field="line.tolerance_status"/></td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </t>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+
+    <template id="report_template_simple">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="report.external_layout">
+            <div class="page container">
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <h1><small>Quality Control Report, Brief Edition</small><br/>
+                  <span t-field="o.name"/></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p class="text-jutify">Brief edition of quality-control-report <span t-field="o.name"/> covering following positions and inspections. For further details please refer to the mentioned inspection reports or consult a more complete edition of this report.</p>
+                  <p t-if="o.lots">
+                    <h2>Inspected Positions</h2>
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                       <th>Serial/Lot-No.</th>
+                       <th>Product</th>
+                      </thead>
+                      <tbody t-foreach="o.lots" t-as="lot">
+                        <tr>
+                          <td><span t-field="lot.name"/></td>
+                          <td><span t-if="lot.product_id" t-field="lot.product_id.name"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Description</h2>
+                  <span t-field="o.description"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Inspections</h2>
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Inspection No.</th>
+                        <th>Test</th>
+                        <th>Date</th>
+                        <th>State</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="o.inspections" t-as="inspection">
+                        <tr t-att-class="(inspection.state == 'success') and 'success' or (inspection.state == 'failed') and 'danger' or ''">
+                          <td><span t-field="inspection.name"/></td>
+                          <td><span t-field="inspection.test.name"/></td>
+                          <td><span t-field="inspection.date" t-field-options='{"widget": "date"}'/></td>
+                          <td><span t-esc="(inspection.state == 'success')  and 'OK' or (inspection.state == 'failed') and 'FAIL' or ''"/></td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h2>Conclusion</h2>
+                  <span t-field="o.conclusion"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <table>
+                    <tr>
+                      <td style="padding:5mm;" t-if="o.writer">Written:&amp;nbsp;<span t-field="o.date_written" t-field-options='{"widget": "date"}'/></td>
+                      <td style="padding:5mm;" t-if="o.approver">Approved:&amp;nbsp;<span t-field="o.date_approved"  t-field-options='{"widget": "date"}'/></td>
+                    </tr>
+                    <tr>
+                      <td style="padding:5mm;" t-if="o.writer" class="text-center">(<span t-field="o.writer"/>)</td>
+                      <td style="padding:5mm;" t-if="o.approver" class="text-center">(<span t-field="o.approver"/>)</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+
+    <report id="report_simple"
+            model="qc.report"
+            string="Quality Report (Simple)"
+            report_type="qweb-pdf"
+            name="quality_control_report.report_template_simple"
+            file="quality_control_report.report_template_simple"
+            attachment_use="True"
+            attachment="(object.name + '_simple.pdf')"
+    />
+
+   <report id="report_detailed"
+            model="qc.report"
+            string="Quality Report (Detailed)"
+            report_type="qweb-pdf"
+            name="quality_control_report.report_template_detailed"
+            file="quality_control_report.report_template_detailed"
+            attachment_use="True"
+            attachment="(object.name + '_detailed.pdf')"
+    />
+
+  </data>
+</openerp>
