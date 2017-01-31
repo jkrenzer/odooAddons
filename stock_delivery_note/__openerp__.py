@@ -22,6 +22,7 @@
     'depends': [
 	'base',
 	'stock',
+	'report_german_letter', #TO BE CHANGED
     ],
 
     # always loaded

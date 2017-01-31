@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Actions, must bedeclared before menu items -->
+
+    <record model="ir.actions.act_window" id="action_list_qc_reports">
+      <field name="name">Reports</field>
+      <field name="res_model">qc.report</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menus  -->
+
+    <menuitem name="Reports" parent="quality_control.qc_menu" id="qc_reports_menu_parent" sequence="10"/>
+    <menuitem name="Reports" id="qc_reports_view" action="action_list_qc_reports" parent="qc_reports_menu_parent" sequence="10"/>
+
+  </data>
+</openerp>

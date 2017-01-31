@@ -8,6 +8,7 @@
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='info']" position="before">
 					<field name="task_id" colspan="2"/>
+					<field name="issue_id" colspan="2"/>
 				</xpath>
 			</field>
 		</record>

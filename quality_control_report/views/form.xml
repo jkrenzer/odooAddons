@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="qc_inspection_form_view">
+            <field name="name">qc.report.form</field>
+            <field name="model">qc.report</field>
+            <field name="arch" type="xml">
+                <form string="Quality Control Report">
+                  <header>
+                    <button name="confirm" string="Confirm" states="draft" class="oe_highlight"/>
+                    <button name="approve" string="Approve" states="confirm" class="oe_highlight"/>
+                    <button name="draft" string="To Draft" states="cancel"/>
+                    <button name="cancel" string="Cancel" states="draft,confirm,approve"/>
+                    <field name="state" widget="statusbar"/>
+                  </header>
+                  <sheet>
+                    <h1>
+                      <label string="Quality Report"/>
+                      <field name="name" class="oe_inline"/>
+                    </h1>
+                    <group>
+                      <group>
+                        <field name="writer" required="True"/>
+                        <field name="approver"/>
+                      </group>
+                      <group>
+                        <field name="date_written" required="True"/>
+                        <field name="date_approved"/>
+                      </group>
+                    </group>
+                    <notebook>
+                      <page string="Contents">
+                        <group>
+                          <field name="description"/>
+                          <field name="inspections" required="True">
+                            <tree>
+                              <field name="name"/>
+                              <field name="state"/>
+                            </tree>
+                          </field>
+                          <field name="conclusion"/>
+                        </group>
+                      </page>
+                      <page string="Details">
+                        <group>
+                          <field name="lots" readonly="True">
+                            <tree>
+                              <field name="name"/>
+                            </tree>
+                          </field>
+                          <field name="products" readonly="True">
+                            <tree>
+                              <field name="name"/>
+                            </tree>
+                          </field>
+                          <field name="productions" readonly="True">
+                            <tree>
+                              <field name="name"/>
+                            </tree>
+                          </field>
+                          <field name="pickings" readonly="True">
+                            <tree>
+                              <field name="name"/>
+                            </tree>
+                          </field>
+                        </group>
+                      </page>
+                    </notebook>
+                    <group string="Internal notes">
+                      <field name="notes" nolabel="1"/>
+                    </group>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+      <record id="quality_report_tree_view" model="ir.ui.view">
+            <field name="name">qc.report.tree</field>
+            <field name="model">qc.report</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Reference"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

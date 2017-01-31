@@ -1,0 +1,14 @@
+<openerp>
+	<data>
+		<record id="view_task_form" model="ir.ui.view">
+                        <field name="name">project.task.work.seeall</field>
+                        <field name="model">project.task</field>
+                        <field name="inherit_id" ref="timesheet_task.view_task_form2"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//field[@name='user_id']" position="attributes">
+                                        <attribute name="invisible">0</attribute>
+                                </xpath>
+                        </field>
+                </record>
+	</data>
+</openerp>

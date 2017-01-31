@@ -1,0 +1,9 @@
+<openerp>
+    <data>
+	<template id="assets_backend" name="stock assets unique serial" inherit_id="stock.assets_backend">
+	    <xpath expr="//script[@src='/stock/static/src/js/widgets.js']" position="attributes">
+	        <attribute name="src">/stock_picking_unique_serial/static/src/js/widgets.js</attribute>
+	    </xpath>
+	</template>	
+    </data>
+</openerp>
