@@ -35,20 +35,40 @@ class SaleOrder(models.Model):
     name = fields.Char('Order Reference', required=True, copy=False, readonly=False, states=READONLY_STATES, select=True, help='Unique number of sale order, computed automatically when the order is created.')
     manual_name = fields.Char('Manual Name', states=READONLY_STATES, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
 #    manual_name = fields.Char('Manual Name', readonly=False, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
-    parent =  fields.Many2one('sale.order', 'Parent Object', readonly=False, copy=False)
+    parents =  fields.Many2many(comodel_name='sale.order', string='Parent Objects', relation="sale_quot_order_rel", column1='parents', column2='children', readonly=False, copy=False)
+    children = fields.Many2many(comodel_name='sale.order', string='Children Objects', relation="sale_quot_order_rel", column1='children', column2='parents', readonly=False, copy=False)
 
-    @api.multi
-    def action_wait(self):
-            for sale in self:
-                defaults = {
-			'name': sale.name,
-			'manual_name': sale.name,
-                        'unrevisioned_name': sale.name,
-			}
-                if super(SaleOrder, self).action_wait():
-                    qou = sale.copy(defaults)
-#		    sale.write(old_values)
-                    sale.write({
-                        'parent': qou.id,
-                        })
+    @api.model
+    def create(self, vals):
+        if vals.get('name', '/') == '/' and vals.get('type','quotation') != 'order':
+            vals['name'] = self.env['ir.sequence'].get('sale.order.quotation')
+        return super(SaleOrder, self).create(vals)
+
+    @api.one
+    def action_button_confirm(self):
+	old_name = self.name
+        quotation = self.copy()
+        self.name = self.env['ir.sequence'].get('sale.order') or '/'
+        quotation.write({
+	    'name': old_name,
+	    'manual_name': old_name,
+            'unrevisioned_name': old_name,
+            'state': self.state,
+            'message_follower_ids': self.message_follower_ids,
+            'children': quotation.children + self,
+	    'message_ids': self.message_ids,
+	    'message_is_follower': self.message_is_follower,
+	    'message_last_post': self.message_last_post,
+	    'message_summary': self.message_summary,
+	    'message_unread': self.message_unread,
+	    'create_date': self.create_date,
+            'create_uid': self.create_uid,
+	})
+        if super(SaleOrder, self).action_button_confirm():
+#	    sale.write(old_values)
+            self.write({
+              'parents': self.parents + quotation,
+            })
             return True
+	else:
+	    return False

@@ -9,7 +9,8 @@
                     <attribute name="string">Derive Sale</attribute>
                 </xpath>
                 <xpath expr="//field[@name='origin']" position="after">
-                    <field name="parent" />
+                    <field name="parents" />
+                    <field name="children" />
                 </xpath>
                 <xpath expr="//field[@name='pricelist_id']" position="after">
                     <field name="manual_name" />

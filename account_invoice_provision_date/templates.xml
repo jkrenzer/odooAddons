@@ -1,0 +1,28 @@
+<openerp>
+        <data>
+                <record id="view_account_invoice_provision_date" model="ir.ui.view">
+                        <field name="name">account.invoice.provision_date..form</field>
+                        <field name="model">account.invoice</field>
+                        <field name="inherit_id" ref="account.invoice_form"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//field[@name='date_invoice']" position="after">
+                                        <field name="date_provision"/>
+                                </xpath>
+                        </field>
+                </record>
+                <record id="report_invoice_document" model="ir.ui.view">
+                        <field name="name">report_invoice_document</field>
+                        <field name="model">account.invoice</field>
+                        <field name="inherit_id" ref="account.report_invoice_document"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//div[@t-if='o.date_invoice']" position="after">
+                                        <div class="col-xs-2" t-if="o.date_provision and not o.is_installment">
+                                           <strong>Provision Date:</strong>
+                                           <p t-field="o.date_provision"/>
+                                        </div>
+                                </xpath>
+                        </field>
+                </record>
+        </data>
+</openerp>
+

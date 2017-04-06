@@ -1,0 +1,24 @@
+<openerp>
+        <data>
+                <record id="view_account_invoice_installment" model="ir.ui.view">
+                        <field name="name">account.invoice.installment.form</field>
+                        <field name="model">account.invoice</field>
+                        <field name="inherit_id" ref="account.invoice_form"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//field[@name='fiscal_position']" position="after">
+                                        <field name="is_installment"/>
+                                </xpath>
+                        </field>
+                </record>
+                <record id="report_invoice_document" model="ir.ui.view">
+                        <field name="name">report_invoice_document</field>
+                        <field name="model">account.invoice</field>
+                        <field name="inherit_id" ref="account.report_invoice_document"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//h2/span[1]" position="before">
+                                	<span t-if="o.type == 'out_invoice' and o.is_installment">Installment</span>
+				</xpath>
+                        </field>
+                </record>
+        </data>
+</openerp>
