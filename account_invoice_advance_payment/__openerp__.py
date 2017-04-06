@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Extended Sale Orders",
+    'name': "Separate Handling of Advance and Discounts",
 
     'summary': """
-        Module which extends the sale-order-workflow to not loose Quotations on getting an order.""",
+        Short (1 phrase/line) summary of the module's purpose, used as
+        subtitle on modules listing or apps.openerp.com""",
 
     'description': """
         Long description of module's purpose
     """,
 
     'author': "Jörn Mankiewicz",
-    'website': "https://github.com/jmankiewicz/odooAddons",
+    'website': "https://github.com/jmankiewicz",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '8.0.0.2',
+    'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'sale_order_revision'],
+    'depends': ['base', 'account'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'data/sale_sequence.xml',
-        'templates.xml',
+        'views/account_invoice_form.xml',
+#        'views/report_invoice.xml', Untested!!
     ],
     # only loaded in demonstration mode
     'demo': [

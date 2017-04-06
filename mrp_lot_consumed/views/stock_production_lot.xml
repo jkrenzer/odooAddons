@@ -1,0 +1,27 @@
+<openerp>
+    <data>
+        <record id="view_mrp_lot_consumed" model="ir.ui.view">
+		        <field name="name">stock.production.lot.consumed.form</field>
+		        <field name="model">stock.production.lot</field>
+		        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+		        <field name="arch" type="xml">
+				<xpath expr="//page[@string='Products']" position="after">
+				    <page string="Consumed Lots">
+					    <field name="hasConsumed">
+					        <tree string="Consumed Lots">
+						    <field name="name"/>
+        	                                </tree>
+ 					    </field>
+                                    </page>
+                                    <page string="Consuming Lots">
+                                            <field name="wasConsumedBy">
+                                                <tree string="Consuming Lots">
+                                                    <field name="name"/>
+                                                </tree>
+                                            </field>
+                                    </page>
+				</xpath>
+		        </field>
+		</record>
+    </data>
+</openerp>

@@ -1,0 +1,25 @@
+<openerp>
+    <data>
+      <record id="view_account_invoice_separate_number" model="ir.ui.view">
+        <field name="name">account.invoice.separate_number.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//page[@string='Payments']" position="after">
+            <page string="Calculation Info">
+             <group>
+               <field name="amount_pos_untaxed"/>
+               <field name="amount_pos_tax"/>
+               <field name="amount_pos_total"/>
+             </group>
+             <group>
+               <field name="amount_neg_untaxed"/>
+               <field name="amount_neg_tax"/>
+               <field name="amount_neg_total"/>
+             </group>
+            </page>
+          </xpath>
+        </field>
+      </record>
+    </data>
+</openerp>
