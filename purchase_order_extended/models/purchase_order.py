@@ -158,12 +158,13 @@ class PurchaseOrder(models.Model):
 
 	@api.model
 	def create(self, values):
-		if 'name' not in values or values['name'] == '/':
+		if 'name' not in values or values['name'] == '/' or values['name'] == '':
 			recs = self.env['ir.sequence']
 			if 'manual_name' not in values or values['manual_name'] == '/' or values['manual_name'] == '':
 				if self._context.get('draft_po'):
         	                        values['name'] = recs.next_by_code('purchase.order')
 					values['manual_name'] = values['name']
+					values['status'] = 'draftpo'
 				elif self._context.get('draft_bid'):
                         	        values['name'] = recs.next_by_code('purchase.order.bid')
                                         values['manual_name'] = values['name']

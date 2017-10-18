@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-03 13:22+0000\n"
+"PO-Revision-Date: 2017-05-03 13:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_extended
+#: field:purchase.order,approver:0
+msgid "Approved by"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended_inherited
+msgid "Clone to PO"
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:118
+#, python-format
+msgid "Cloned RFQ-Bid(s) %s to Purchase Order %s"
+msgstr ""
+
+#. module: purchase_order_extended
+#: field:purchase.order,children:0
+msgid "Derived Objects"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Derived objects"
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:153
+#, python-format
+msgid "Error!"
+msgstr ""
+
+#. module: purchase_order_extended
+#: field:purchase.order,contact:0
+msgid "In Charge"
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:154
+#, python-format
+msgid "In order to delete a purchase order, you must cancel it first."
+msgstr ""
+
+#. module: purchase_order_extended
+#: field:purchase.order,manual_name:0
+msgid "Manual Name"
+msgstr ""
+
+#. module: purchase_order_extended
+#: field:purchase.order,children_count:0
+msgid "Number of derived children"
+msgstr ""
+
+#. module: purchase_order_extended
+#: field:purchase.order,parent:0
+msgid "Parent Object"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Print PO"
+msgstr ""
+
+#. module: purchase_order_extended
+#: model:ir.model,name:purchase_order_extended.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:96
+#, python-format
+msgid "Purchase Order approved by %s "
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:82
+#, python-format
+msgid "Purchase Order marked as sent"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "See all objects dreived from this one"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Send PO"
+msgstr ""
+
+#. module: purchase_order_extended
+#: help:purchase.order,manual_name:0
+msgid "Use this field to manually override the assigned name of the object."
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "draft,confirmed,sent,bid,approved,ordered,except_picking,except_invoice"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "draft,sent,bid,approved,ordered,done"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended_inherited
+msgid "draft,sent,bid,draftpo,approved,ordered,done"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}"
+msgstr ""
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "{'invisible': ['|', ('shipped','=',True), ('state','!=', 'ordered')]}"
+msgstr ""
+
