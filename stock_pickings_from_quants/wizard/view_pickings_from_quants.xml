@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="pickings_from_quants_form_view">
+            <field name="name">pickings_from_quants.form</field>
+            <field name="model">stock_pickings_from_quants.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Generate pickings for selected quants">
+                    <group>
+                        <field name="destination_location_id"/>
+                        <field name="picking_type_id"/>
+                    </group>
+                    <button name="action_create_pickings" string="Create Pickings" type="object" class="btn-primary"/>
+                    <button name="cancel" string="Cancel" special="cancel" class="btn-default"/>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_pickings_from_quants_wizard"
+                    name="Generate pickings"
+                    src_model="stock.quant"
+                    res_model="stock_pickings_from_quants.wizard"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
+    </data>
+</openerp>

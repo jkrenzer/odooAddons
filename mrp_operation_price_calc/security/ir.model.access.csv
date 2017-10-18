@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_operation_extension_hours_mrp_operation_extension_hours,mrp_operation_extension_hours.mrp_operation_extension_hours,model_mrp_operation_extension_hours_mrp_operation_extension_hours,,1,0,0,0

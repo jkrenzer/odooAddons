@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+        <record id="mrp_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree</field>
+            <field name="model">mrp.bom</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="routing_id"/>
+                    <field name="standard_price"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

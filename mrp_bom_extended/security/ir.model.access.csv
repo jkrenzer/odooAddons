@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_bom_extended_mrp_bom_extended,mrp_bom_extended.mrp_bom_extended,model_mrp_bom_extended_mrp_bom_extended,,1,0,0,0

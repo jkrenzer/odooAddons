@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-03 13:22+0000\n"
+"PO-Revision-Date: 2017-05-03 13:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_extended
+#: field:purchase.order,approver:0
+msgid "Approved by"
+msgstr "Bestätigt von"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended_inherited
+msgid "Clone to PO"
+msgstr "Bestellung ableiten"
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:118
+#, python-format
+msgid "Cloned RFQ-Bid(s) %s to Purchase Order %s"
+msgstr "Angebot(e) %s zu Bestellvorgang %s geklont"
+
+#. module: purchase_order_extended
+#: field:purchase.order,children:0
+msgid "Derived Objects"
+msgstr "Abgeleitete Objekte"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Derived objects"
+msgstr "Abgeleitete Objekte"
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:153
+#, python-format
+msgid "Error!"
+msgstr "Fehler!"
+
+#. module: purchase_order_extended
+#: field:purchase.order,contact:0
+msgid "In Charge"
+msgstr "Verantwortlich"
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:154
+#, python-format
+msgid "In order to delete a purchase order, you must cancel it first."
+msgstr "Um einen Bestellvorgang zu löschen muss er zuerst abgebrochen werden."
+
+#. module: purchase_order_extended
+#: field:purchase.order,manual_name:0
+msgid "Manual Name"
+msgstr "Manueller Name"
+
+#. module: purchase_order_extended
+#: field:purchase.order,children_count:0
+msgid "Number of derived children"
+msgstr "Abgeleitete Vorgänge"
+
+#. module: purchase_order_extended
+#: field:purchase.order,parent:0
+msgid "Parent Object"
+msgstr "Ableitungsvorlage"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Print PO"
+msgstr "Drucke Bestellung"
+
+#. module: purchase_order_extended
+#: model:ir.model,name:purchase_order_extended.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bestellauftrag"
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:96
+#, python-format
+msgid "Purchase Order approved by %s "
+msgstr "Vorgang bestätigt von %s "
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:82
+#, python-format
+msgid "Purchase Order marked as sent"
+msgstr "Bestellung als erfolgreich übermittelt markiert"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "See all objects dreived from this one"
+msgstr "Zeige alle abgeleiteten Objekte an"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Send PO"
+msgstr "Bestellung angekommen"
+
+#. module: purchase_order_extended
+#: help:purchase.order,manual_name:0
+msgid "Use this field to manually override the assigned name of the object."
+msgstr "Hier kann manuell ein Name gesetzt werden."
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "draft,confirmed,sent,bid,approved,ordered,except_picking,except_invoice"
+msgstr "draft,confirmed,sent,bid,approved,ordered,except_picking,except_invoice"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "draft,sent,bid,approved,ordered,done"
+msgstr "draft,sent,bid,approved,ordered,done"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended_inherited
+msgid "draft,sent,bid,draftpo,approved,ordered,done"
+msgstr "draft,sent,bid,draftpo,approved,ordered,done"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}"
+msgstr "{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}"
+
+#. module: purchase_order_extended
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "{'invisible': ['|', ('shipped','=',True), ('state','!=', 'ordered')]}"
+msgstr "{'invisible': ['|', ('shipped','=',True), ('state','!=', 'ordered')]}"
+
