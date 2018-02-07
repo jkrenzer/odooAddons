@@ -37,6 +37,18 @@ class SaleOrder(models.Model):
 #    manual_name = fields.Char('Manual Name', readonly=False, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
     parents =  fields.Many2many(comodel_name='sale.order', string='Parent Objects', relation="sale_quot_order_rel", column1='parents', column2='children', readonly=False, copy=False)
     children = fields.Many2many(comodel_name='sale.order', string='Children Objects', relation="sale_quot_order_rel", column1='children', column2='parents', readonly=False, copy=False)
+    invoiced_total = fields.Float(string="Invoiced Total", compute="_get_invoiced_amount", help="Amount which has been invoiced until now.")
+    invoiced_untaxed_total = fields.Float(string="Invoiced Total (untaxed)", compute="_get_invoiced_amount", help="Amount without taxes which has been invoiced.")
+
+    @api.one
+    def _get_invoiced_amount(self):
+        total = 0.0
+        untaxed_total = 0.0
+        for invoice in self.invoice_ids:
+                untaxed_total += invoice.amount_untaxed
+                total += invoice.amount_total
+        self.invoiced_total = total
+        self.invoiced_untaxed_total = untaxed_total
 
     @api.model
     def create(self, vals):
