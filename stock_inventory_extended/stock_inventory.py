@@ -25,8 +25,9 @@ class StockInventory(models.Model):
 		if len(self.line_ids) > 1:
 			lines = [line.id for line in self.line_ids]
 			action['domain'] = "[('id','in',[" + ','.join(map(str, lines)) + "])]"
+#                        raise Warning('Debug','We have an domain of: %s' % action['domain'])
 		else:
 			action['views'] = [(False, 'tree'),(False,'form')]
 			action['res_id'] =  self.line_ids[0].id or False
-#		raise Warning('Debug','We have an domain of: %s' % action['domain'])
+# 		         raise Warning('Debug','We have an domain of: %s' % action['domain'])
                 return action
