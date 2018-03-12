@@ -15,22 +15,30 @@ class quality_control_report_print_wizard(models.TransientModel):
          '''
          Prints the report with the chosen template
          '''
-         context = {}
-#         data = self[0]
+         context = {'lang': self.language.code or 'en_US'}
+         filename = "%s_%s" % (self.template.name, self.language.code)
          datas = {
            'ids': [self.report.id],
            'model': 'qc.report',
-#           'form': data,
-           'context': context,
          }
          return {
            'type' : 'ir.actions.report.xml',
            'report_name' : self.template.report_name,
            'datas' : datas,
+           'attachment_use': False,
+           'name': filename,
+           'attachment': filename,
+           'context': context,
          }
+     @api.multi
+     def _get_language(self):
+         user_lang_code = self.env.user.lang
+         user_lang = user_lang_code and self.env['res.lang'].search([('code','=',user_lang_code)], limit=1) or self.env['res.lang'].search([('code','=','en_US')], limit=1)
+         return user_lang
 
-     report = fields.Many2one(comodel_name="qc.report", string="Report", default=_default_report)
-     template = fields.Many2one(comodel_name="ir.actions.report.xml", string="Report Template", domain=[('model','=','qc.report')])
+     report = fields.Many2one(comodel_name="qc.report", string="Report", default=_default_report, required=True)
+     template = fields.Many2one(comodel_name="ir.actions.report.xml", string="Report Template", domain=[('model','=','qc.report')], required=True)
+     language = fields.Many2one(comodel_name="res.lang", String="Printing Language", default=_get_language, required=True)
 
 class quality_control_report_text_template(models.Model):
      _name = 'qc.report_text_template'

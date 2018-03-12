@@ -119,13 +119,27 @@
                       </thead>
                       <tbody>
                         <t t-foreach="inspection.inspection_lines" t-as="line">
-                          <tr t-att-class="(line.tolerance_status == 'optimal') and 'success' or (line.tolerance_status == 'tolerable') and 'warning' or (line.tolerance_status == 'not_tolerable') and 'danger'  or ''">
+                          <tr t-if="line.question_type == 'quantitative'" t-att-class="(line.tolerance_status  == 'optimal') and 'success' or (line.tolerance_status == 'tolerable') and 'warning' or (line.tolerance_status == 'not_tolerable') and 'danger'  or ''" style="font-size:80%;">
                             <td colspan="2"><span t-field="line.name"/></td>
                             <td><span t-field="line.question_type"/></td>
-                            <td><span t-esc="(line.question_type == 'quantitative') and line.quantitative_value or (line.question_type == 'qualitative') and line.qualitative_value or ''"/></td>
+                            <td><span t-esc="line.quantitative_value or ''"/></td>
                             <td><span t-field="line.uom_id.name"/></td>
                             <td colspan="2"><span t-field="line.valid_values"/></td>
                             <td><span t-field="line.tolerance_status"/></td>
+                          </tr>
+                          <tr t-if="line.question_type == 'qualitative'" t-att-class="(line.qualitative_value.tolerance_status  == 'optimal' or line.qualitative_value.ok) and 'success' or (line.qualitative_value.tolerance_status == 'tolerable') and 'warning' or (line.qualitative_value.tolerance_status == 'not_tolerable') and 'danger'  or ''" style="font-size:80%;">
+                            <td colspan="2"><span t-field="line.name"/></td>
+                            <td><span t-field="line.question_type"/></td>
+                            <td><span colspan="2" t-esc="line.qualitative_value.name or ''"/></td>
+                            <td colspan="3">
+                              Possible answers:
+                              <ol t-if="line.possible_ql_values">
+                                <li t-foreach="line.possible_ql_values" t-as="pos_value">
+                                  <span t-field="pos_value.name"/>
+                                </li>
+                              </ol>
+                            </td>
+                            <td><span t-esc="{False: False, 'optimal': 'Optimal', 'tolerable': 'Tolerable', 'not_tolerable': 'Not tolerable'}[line.qualitative_value.tolerance_status or line.qualitative_value.ok and 'optimal']"/></td>
                           </tr>
                         </t>
                       </tbody>

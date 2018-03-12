@@ -8,6 +8,7 @@
           <group>
             <field name="report" required="True"/>
             <field name="template" required="True"/>
+            <field name="language" required="True"/>
             <button name="print_report" class="oe_highlight" type="object" string="Print"/>
           </group>
         </form>

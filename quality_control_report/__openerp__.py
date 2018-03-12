@@ -6,17 +6,17 @@
         Print quality-reports.""",
 
     'description': """
-        Long description of module's purpose
+        This module allows to print comprehensive reports of done quality-controls.
     """,
 
-    'author': "Jörn Mankiewicz",
-    'website': "https://github.com/jmankiewicz",
+    'author': "Jörn Krenzer",
+    'website': "https://github.com/jkrenzer",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '8.0.0.1',
+    'version': '8.0.0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base','quality_control','quality_control_mrp','quality_control_stock'],
