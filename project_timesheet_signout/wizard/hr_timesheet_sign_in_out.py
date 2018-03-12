@@ -54,8 +54,8 @@ class SignoutWizard(models.TransientModel):
 	
 
 	@api.model
-	def _write(self, data, emp_id):
-		timesheet_act_id = super(SignoutWizard, self)._write(data, emp_id)
+	def _write(self, data, emp_id, context=None):
+		timesheet_act_id = super(SignoutWizard, self)._write(data, emp_id, context=context)
 		timesheet_act = self.env['hr.analytic.timesheet'].browse(timesheet_act_id)
 		if hasattr(timesheet_act, 'task_id') and data['task_id']:
 			timesheet_act.task_id =  data['task_id']
