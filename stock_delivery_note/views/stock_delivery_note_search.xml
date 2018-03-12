@@ -1,0 +1,19 @@
+<openerp>
+	<data>
+
+                <record id="stock_delivery_note_search" model="ir.ui.view">
+                        <field name="name">stock.delivery_note.search</field>
+                        <field name="model">stock.delivery_note</field>
+                        <field name="arch" type="xml">
+                                <search string="Search Delivery Note">
+					<field name="name" string="Reference"/>
+					<field name="partner_id" string="Partner"/>
+					<field name="date" string="Date"/>
+					<field name="pickings" string="Pickings"/>
+                                        <field name="quants" string="Lot/Serial/Product"/>	
+				</search>
+                        </field>
+                </record>
+        </data>
+</openerp>
+

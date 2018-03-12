@@ -5,14 +5,15 @@
                         <field name="model">stock.picking</field>
                         <field name="inherit_id" ref="stock.view_picking_form"/>
                         <field name="arch" type="xml">
-                                <xpath expr="//field[@name='picking_type_id']" position="after">
-                                        <field name="contact"/>
-					<field name="delivery_note_ref"/>
-					<field name="partner_ref"/>
+                                <xpath expr="//header/field[@name='state']" position="before">
+                                                <button name="create_delivery_note" string="Create Delivery Note" type="object" groups="base.group_user"/>
                                 </xpath>
-				<xpath expr="//button[@name='do_print_picking']" position="after">
-                                        <button name="do_print_delivery_note" string="Print Delivery Note" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('picking_type_code', '=', 'outgoing'), ('state', '!=', 'assigned')]}"/>
+                                <xpath expr="//div[contains(@class, 'oe_button_box')]" position="inside">
+                                                <button type="object" name="view_delivery_notes" class="oe_stat_button" icon="fa-files-o" attrs="{'invisible': [('delivery_notes_count', '=', 0)]}">
+                                                        <field name="delivery_notes_count" widget="statinfo" string="Delivery Notes" help="See all delivery notes documenting this picking."/>
+                                                </button>
                                 </xpath>
+
 				<notebook position="inside">
 		                    	<page string="Backorders">
                 		        	<field name="backorders_ids"></field>

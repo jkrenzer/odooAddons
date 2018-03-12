@@ -14,6 +14,14 @@
 						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" statusbar_colors='{"cancel":"red","draft":"blue"}' readonly="1"/>
 					</header>
 					<sheet>
+                                                <div class="oe_right oe_button_box">
+                                                        <button type="object" name="view_moves" class="oe_stat_button" icon="fa-files-o" attrs="{'invisible': [('moves_count', '=', 0)]}">
+                                                                <field name="moves_count" widget="statinfo" string="Moves" help="See all moves documented by this delivery note."/>
+                                                        </button>
+                                                        <button type="object" name="view_quants" class="oe_stat_button" icon="fa-files-o" attrs="{'invisible': [('quants_count', '=', 0)]}">
+                                                                <field name="quants_count" widget="statinfo" string="Quants" help="See all quants documented by this delivery note."/>
+                                                        </button>
+                                                </div>
 						<h1>
 							<label string="Delivery Note"/>
 							<field name="name" class="oe_inline"/>

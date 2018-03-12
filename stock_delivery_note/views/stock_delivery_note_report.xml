@@ -77,6 +77,12 @@
 									<li t-if="quant.lot_id or quant.package_id"><span t-if="quant.lot_id">Serial-No.:<span t-field="quant.lot_id"/>&amp;nbsp;</span><span t-if="quant.package_id">Package: <span t-field="quant.package_id"/></span></li>
 								</t>
 							</ol>
+                                                        <ol t-if="line.reserved_quant_ids">
+                                                                <t t-foreach="line.reserved_quant_ids" t-as="quant">
+                                                                        <li t-if="quant.lot_id or quant.package_id"><span t-if="quant.lot_id">Serial-No.:<span t-field="quant.lot_id"/>&amp;nbsp;</span><span t-if="quant.package_id">Package: <span t-field="quant.package_id"/></span> (planned)</li>
+                                                                </t>
+                                                        </ol>
+
 			                            </td>
 			                        </tr>
 	        	                </table>
