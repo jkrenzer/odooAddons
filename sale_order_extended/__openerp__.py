@@ -19,7 +19,7 @@
     'version': '8.0.0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'sale_order_revision'],
+    'depends': ['base', 'sale', 'sale_order_revision', 'sale_stock'],
 
     # always loaded
     'data': [

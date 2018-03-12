@@ -5,6 +5,9 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_quotation_send']" position="before">
+                    <button name="action_order_confirm" string="Confirm Order" type="object" states="draft_order" class="oe_highlight" groups="base.group_user"/>
+                </xpath>
                 <xpath expr="//button[@name='action_button_confirm']" position="attributes">
                     <attribute name="string">Derive Sale</attribute>
                 </xpath>
@@ -30,6 +33,18 @@
                     <field name="invoiced_rate"/>
                 </xpath>
             </field>
+        </record>
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="domain">[('type','=','quotation')]</field>
+        </record>
+
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="context">{
+                    'draft_order':True,
+                    'search_default_my_sale_orders_filter': 1
+                }
+            </field>
+            <field name="domain">[('type','=','order')]</field>
         </record>
     </data>
 </openerp>
