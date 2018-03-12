@@ -18,17 +18,17 @@ msgstr ""
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "&nbsp;"
-msgstr "&nbsp;"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "(planned)"
-msgstr "(geplant)"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid ", backorder of"
-msgstr ", Rückstand von"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.act_window,help:stock_delivery_note.action_list_delivery_notes
@@ -39,78 +39,73 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "		to the receiver.\n"
 "              </p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Klicken um einen Lieferschein zu erstellen.\n"
-"              </p><p>\n"
-"                Lieferscheine sind kundenfreundliche Berichte über den Umfang und Status aller ausgewählten Liefervorgänge.\n"
-"              </p>\n"
-"            "
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,notes:0
 msgid "Additional Notes"
-msgstr "Zusätzliche Bemerkungen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,notes:0
 msgid "Additional notes which should appear on the Delivery Note"
-msgstr "Zusätzliche Bemerkungen die im Lieferschein erscheinen sollen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.quant,delivery_notes:0
 msgid "All delivery notes mentioning this quant"
-msgstr "Alle Lieferscheine die dieses Quant erwähnen."
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,moves:0
 msgid "All moves in the documented pickings"
-msgstr "Alle Lagerbuchungen in den dokumentierten Pickvorgängen."
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,quants:0
 msgid "All quants moved or reserved in the documented pickings"
-msgstr "Alle Quants die in den vom Lieferschein dokumentierten Bewegungen reserviert oder gebucht wurden."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.picking:stock_delivery_note.view_stock_picking_delivery_note
 msgid "Backorders"
-msgstr "Rückstände"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: selection:stock.delivery_note,state:0
 msgid "Cancelled"
-msgstr "Abgebrochen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: selection:stock.delivery_note,state:0
 msgid "Confirm"
-msgstr "Bestätigen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.picking:stock_delivery_note.view_stock_picking_delivery_note
 msgid "Create Delivery Note"
-msgstr "Erstelle Lieferschein"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 msgid "Date"
-msgstr "Date"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "Datum der letzten Nachricht auf diesem Vorgang."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Dear Sir or Madame,"
-msgstr "Sehr geehrte Damen und Herren,"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.report.xml,name:stock_delivery_note.report_delivery_note
@@ -118,37 +113,37 @@ msgstr "Sehr geehrte Damen und Herren,"
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Delivery Note"
-msgstr "Lieferschein"
+msgstr ""
 
 #. module: stock_delivery_note
 #: code:addons/stock_delivery_note/models/stock_delivery_note.py:119
 #, python-format
 msgid "Delivery Note <b>%s</b> created"
-msgstr "Lieferschein <b>%s</b> erstellt"
+msgstr ""
 
 #. module: stock_delivery_note
 #: code:addons/stock_delivery_note/models/stock_delivery_note.py:163
 #, python-format
 msgid "Delivery Note cancelled by %s"
-msgstr "Lieferschein wurde von %s abgebrochen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: code:addons/stock_delivery_note/models/stock_delivery_note.py:145
 #, python-format
 msgid "Delivery Note confirmed by %s"
-msgstr "Lieferschein bestätigt von %s"
+msgstr ""
 
 #. module: stock_delivery_note
 #: code:addons/stock_delivery_note/models/stock_delivery_note.py:136
 #, python-format
 msgid "Delivery Note marked as draft by %s"
-msgstr "Lieferschein als Entwurf markiert von %s"
+msgstr ""
 
 #. module: stock_delivery_note
 #: code:addons/stock_delivery_note/models/stock_delivery_note.py:154
 #, python-format
 msgid "Delivery Note marked done by %s"
-msgstr "Lieferschein von %s als erledigt markiert"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.act_window,name:stock_delivery_note.action_list_delivery_notes
@@ -157,277 +152,277 @@ msgstr "Lieferschein von %s als erledigt markiert"
 #: view:stock.picking:stock_delivery_note.view_stock_picking_delivery_note
 #: field:stock.quant,delivery_notes:0
 msgid "Delivery Notes"
-msgstr "Lieferscheine"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: selection:stock.delivery_note,state:0
 msgid "Done"
-msgstr "Erledigt"
+msgstr ""
 
 #. module: stock_delivery_note
 #: selection:stock.delivery_note,state:0
 msgid "Draft"
-msgstr "Entwurf"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "FAX:"
-msgstr "FAX:"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_follower_ids:0
 msgid "Followers"
-msgstr "Beobachter"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Enthält die Zusammenfassung aller Unterhaltungen (Menge der Nachrichten, ...). Diese Zusammenfassung steht direkt im HTML-Format zur verfügung und kann in Kanban-Ansichten eingefügt werden."
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "In case of any uncertainties or problems, please contact us."
-msgstr "Bei Unklarheiten oder Problemen stehen wir Ihnen gerne zur Verfügung."
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Ist ein Beobachter"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_last_post:0
 msgid "Last Message Date"
-msgstr "Datum der letzten Mitteilung"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 msgid "Lot/Serial/Product"
-msgstr "Los/Serien-Nr./Produkt"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:res.groups,name:stock_delivery_note.group_stock_delivery_note_manager
 msgid "Manager"
-msgstr "Manager"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.server,name:stock_delivery_note.stock_delivery_note_action_cancel
 msgid "Mark cancelled"
-msgstr "Als abgebrochen markieren"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.server,name:stock_delivery_note.stock_delivery_note_action_confirm
 msgid "Mark confirmed"
-msgstr "Als bestätigt markieren"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.server,name:stock_delivery_note.stock_delivery_note_action_done
 msgid "Mark done"
-msgstr "Als erledigt markieren"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.actions.server,name:stock_delivery_note.stock_delivery_note_action_draft
 msgid "Mark draft"
-msgstr "Als Entwurf markieren"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_ids:0
 msgid "Messages"
-msgstr "Nachrichten"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,message_ids:0
 msgid "Messages and communication history"
-msgstr "Nachrichten- und Kommunikations-Historie"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: field:stock.delivery_note,moves:0
 msgid "Moves"
-msgstr "Lagerbuchungen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 msgid "Notes"
-msgstr "Anmerkungen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.picking,delivery_notes_count:0
 msgid "Number of Delivery Notes referencing this picking."
-msgstr "Anzahl der Lieferscheine die dieses Objekt referenzieren."
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.quant,delivery_notes_count:0
 msgid "Number of Delivery Notes referencing this quant."
-msgstr "Anzahl von Lieferscheinen die dieses Quant referenzieren."
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.picking,delivery_notes_count:0
 #: field:stock.quant,delivery_notes_count:0
 msgid "Number of References"
-msgstr "Anzahl der Referenzen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,moves_count:0
 msgid "Number of moves"
-msgstr "Anzahl der Lagerbuchungen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,quants_count:0
 msgid "Number of quants"
-msgstr "Anzahl der Quants"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Package:"
-msgstr "Packet:"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 #: field:stock.delivery_note,partner_id:0
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.model,name:stock_delivery_note.model_stock_picking
 msgid "Picking List"
-msgstr "Pickliste"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 msgid "Pickings"
-msgstr "Picklisten"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Pos."
-msgstr "Pos."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Product"
-msgstr "Produkt"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Qty"
-msgstr "Anzahl"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:ir.model,name:stock_delivery_note.model_stock_quant
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 #: field:stock.delivery_note,quants:0
 msgid "Quants"
-msgstr "Quants"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 msgid "Reference"
-msgstr "Referenz"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 msgid "Reopen"
-msgstr "Erneut öffnen"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_search
 msgid "Search Delivery Note"
-msgstr "Suche Lieferschein"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.picking:stock_delivery_note.view_stock_picking_delivery_note
 msgid "See all delivery notes documenting this picking."
-msgstr "See all delivery notes documenting this picking."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 msgid "See all moves documented by this delivery note."
-msgstr "Alle Lagerbewegungen dieses Lieferscheins anzeigen."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:stock.delivery_note:stock_delivery_note.stock_delivery_note_form_view
 msgid "See all quants documented by this delivery note."
-msgstr "Alle Quants, die von diesem Lieferschein berührt werden, anzeigen."
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Serial-No.:"
-msgstr "Serien-Nr.:"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "Shipment"
-msgstr "Lieferung"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,state:0
 msgid "State of the delivery note. Draft marks a note being worked on, confirmed notes are filled appropiately. Notes marked as done have been sent or agreed upon by the recipient."
-msgstr "Status des Lieferscheins. Entwürfe sind zu bearbeitende Lieferscheine, bestätigte Lieferscheine sind korrekt ausgefüllt. Als erledigt markierte Lieferscheine wurden versandt oder vom Kunden akzeptiert."
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,state:0
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_summary:0
 msgid "Summary"
-msgstr "Zusammenfassung"
+msgstr ""
 
 #. module: stock_delivery_note
 #: sql_constraint:stock.delivery_note:0
 msgid "The Delivery Note reference number must be unique per company !"
-msgstr "The Delivery Note reference number must be unique per company !"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "There are following backorders for this shipment:"
-msgstr "Es gibt folgende Rückstände zu dieser Lieferung:"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,message_unread:0
 msgid "Unread Messages"
-msgstr "Ungelesene Nachrichten"
+msgstr ""
 
 #. module: stock_delivery_note
 #: model:res.groups,name:stock_delivery_note.group_stock_delivery_note_user
 msgid "User"
-msgstr "Benutzer"
+msgstr ""
 
 #. module: stock_delivery_note
 #: field:stock.delivery_note,website_message_ids:0
 msgid "Website Messages"
-msgstr "Website Messages"
+msgstr ""
 
 #. module: stock_delivery_note
 #: help:stock.delivery_note,website_message_ids:0
 msgid "Website communication history"
-msgstr "Kommunikation auf der Homepage"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "in reference to"
-msgstr "mit Verweis auf"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "planned to be shipped on"
-msgstr "planmäßig zu versenden am"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "shipped on"
-msgstr "versandt am"
+msgstr ""
 
 #. module: stock_delivery_note
 #: view:website:stock_delivery_note.report_delivery_note_document
 msgid "with this note we document the delivery of following shipments:"
-msgstr "mit diesem Lieferschein dokumentieren wir die folgenden Lieferungen:"
+msgstr ""
 

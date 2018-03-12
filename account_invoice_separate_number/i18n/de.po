@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_separate_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-31 14:27+0000\n"
+"PO-Revision-Date: 2018-01-31 14:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_separate_number
+#: model:ir.model,name:account_invoice_separate_number.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: account_invoice_separate_number
+#: sql_constraint:account.invoice:0
+msgid "Invoice Reference must be unique per Company!"
+msgstr "Rechnungsnummer muss unternehmensweit einmalig sein!"
+
+#. module: account_invoice_separate_number
+#: field:account.invoice,partner_ref:0
+msgid "Partner Reference"
+msgstr "Partner Referenz"
+
+#. module: account_invoice_separate_number
+#: help:account.invoice,partner_ref:0
+msgid "Reference origin of our partner to which this invoice belongs. Can be an order reference for example."
+msgstr "Referenz unseres Partners auf den sich diese Rechnung bezieht. Dies kann z.B. eine Auftragsreferenz sein."
+

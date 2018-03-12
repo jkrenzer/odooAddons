@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-03 13:22+0000\n"
-"PO-Revision-Date: 2017-05-03 13:22+0000\n"
+"POT-Creation-Date: 2018-01-31 18:10+0000\n"
+"PO-Revision-Date: 2018-01-31 18:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Clone to PO"
 msgstr ""
 
 #. module: purchase_order_extended
-#: code:addons/purchase_order_extended/models/purchase_order.py:118
+#: code:addons/purchase_order_extended/models/purchase_order.py:116
 #, python-format
 msgid "Cloned RFQ-Bid(s) %s to Purchase Order %s"
 msgstr ""
@@ -42,7 +42,7 @@ msgid "Derived objects"
 msgstr ""
 
 #. module: purchase_order_extended
-#: code:addons/purchase_order_extended/models/purchase_order.py:153
+#: code:addons/purchase_order_extended/models/purchase_order.py:147
 #, python-format
 msgid "Error!"
 msgstr ""
@@ -53,7 +53,7 @@ msgid "In Charge"
 msgstr ""
 
 #. module: purchase_order_extended
-#: code:addons/purchase_order_extended/models/purchase_order.py:154
+#: code:addons/purchase_order_extended/models/purchase_order.py:147
 #, python-format
 msgid "In order to delete a purchase order, you must cancel it first."
 msgstr ""
@@ -66,6 +66,18 @@ msgstr ""
 #. module: purchase_order_extended
 #: field:purchase.order,children_count:0
 msgid "Number of derived children"
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:74
+#, python-format
+msgid "Order %s  was marked as sent."
+msgstr ""
+
+#. module: purchase_order_extended
+#: code:addons/purchase_order_extended/models/purchase_order.py:83
+#, python-format
+msgid "Order %s  was marked as successfully placed."
 msgstr ""
 
 #. module: purchase_order_extended
@@ -84,15 +96,14 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_order_extended
-#: code:addons/purchase_order_extended/models/purchase_order.py:96
+#: code:addons/purchase_order_extended/models/purchase_order.py:95
 #, python-format
 msgid "Purchase Order approved by %s "
 msgstr ""
 
 #. module: purchase_order_extended
-#: code:addons/purchase_order_extended/models/purchase_order.py:82
-#, python-format
-msgid "Purchase Order marked as sent"
+#: view:purchase.order:purchase_order_extended.view_purchase_order_extended
+msgid "Received"
 msgstr ""
 
 #. module: purchase_order_extended
@@ -102,7 +113,7 @@ msgstr ""
 
 #. module: purchase_order_extended
 #: view:purchase.order:purchase_order_extended.view_purchase_order_extended
-msgid "Send PO"
+msgid "Sent"
 msgstr ""
 
 #. module: purchase_order_extended

@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-07 12:37+0000\n"
+"PO-Revision-Date: 2018-02-07 12:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_extended
+#: help:sale.order,invoiced_total:0
+msgid "Amount which has been invoiced until now."
+msgstr "Bis jetzt in Rechnung gestellter Brutto-Gesamtbertrag."
+
+#. module: sale_order_extended
+#: help:sale.order,invoiced_untaxed_total:0
+msgid "Amount without taxes which has been invoiced."
+msgstr "Bis jetzt in Rechnung gestellter Netto-Geamtbetrag."
+
+#. module: sale_order_extended
+#: field:sale.order,children:0
+msgid "Children Objects"
+msgstr "Abgeleitete Objekte"
+
+#. module: sale_order_extended
+#: view:sale.order:sale_order_extended.view_sale_order_extended
+msgid "Derive Sale"
+msgstr "Auftrag ableiten"
+
+#. module: sale_order_extended
+#: field:sale.order,invoiced_total:0
+msgid "Invoiced Total"
+msgstr "Rechnungs-Brutto"
+
+#. module: sale_order_extended
+#: field:sale.order,invoiced_untaxed_total:0
+msgid "Invoiced Total (untaxed)"
+msgstr "Rechnungs-Netto"
+
+#. module: sale_order_extended
+#: field:sale.order,manual_name:0
+msgid "Manual Name"
+msgstr "Manueller Name"
+
+#. module: sale_order_extended
+#: field:sale.order,parents:0
+msgid "Parent Objects"
+msgstr "Eltern-Objekte"
+
+#. module: sale_order_extended
+#: model:ir.model,name:sale_order_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_order_extended
+#: help:sale.order,manual_name:0
+msgid "Use this field to manually override the assigned name of the object."
+msgstr "Dieses Feld nutzen um manuell einen Namen zu setzen."
+
