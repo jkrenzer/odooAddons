@@ -10,14 +10,14 @@
         Long description of module's purpose
     """,
 
-    'author': "Jörn Mankiewicz",
-    'website': "https://github.com/jmankiewicz/odooAddons",
+    'author': "Jörn Krenzer",
+    'website': "https://github.com/jkrenzer/odooAddons",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    "version": "8.0.0.1",
+    "version": "8.0.0.2",
 
     # any module necessary for this one to work correctly
     'depends': ['base','purchase','purchase_rfq_bid_workflow','purchase_order_revision'],
@@ -27,7 +27,7 @@
         # 'security/ir.model.access.csv',
         'view/purchase_order.xml',
 	'data/purchase_sequence.xml',
-        #'purchase_order_extended.xml',
+	'workflow/purchase_order.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

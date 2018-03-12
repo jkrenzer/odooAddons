@@ -6,11 +6,12 @@
 		        <field name="inherit_id" ref="purchase.purchase_order_form"/>
 		        <field name="arch" type="xml">
 				<xpath expr="//button[@name='view_picking']" position="before">
-					<button name="send_order" states="approved" string="Send PO" type="object" class="oe_highlight"  groups="base.group_user"/>
-					<button name="print_order" states="approved,ordered" string="Print PO" type="object" groups="base.group_user"/>
+					<button name="order_sent" states="approved" string="Sent" type="workflow" class="oe_highlight"  groups="base.group_user"/>
+					<button name="order_received" states="sent_order" string="Received" type="workflow" class="oe_highlight"  groups="base.group_user"/>
+					<button name="print_order" states="approved,sent_order,ordered" string="Print PO" type="object" groups="base.group_user"/>
 				</xpath>
 				<xpath expr="//field[@name='state']" position="attributes">
-					<attribute name="statusbar_visible">draft,sent,bid,approved,ordered,done</attribute>
+					<attribute name="statusbar_visible">draft,sent,bid,approved,sent_order,ordered,done</attribute>
 				</xpath>
                                 <xpath expr="//button[@name='view_picking']" position="attributes">
                                         <attribute name="attrs">{'invisible': ['|', ('shipped','=',True), ('state','!=', 'ordered')]}</attribute>
@@ -19,7 +20,7 @@
                                         <attribute name="attrs">{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}</attribute>
                                 </xpath>
                                 <xpath expr="//button[@name='action_cancel']" position="attributes">
-                                        <attribute name="states">draft,confirmed,sent,bid,approved,ordered,except_picking,except_invoice</attribute>
+                                        <attribute name="states">draft,confirmed,sent,bid,approved,order_sent,ordered,except_picking,except_invoice</attribute>
                                 </xpath>
 				<xpath expr="//field[@name='partner_ref']" position="after">
 					<field name="parent" />
@@ -38,6 +39,9 @@
 						</button>
 					</div>
 				</xpath>
+                                <xpath expr="//field[@name='invoice_method']" position="attributes">
+                                        <attribute name="states">{'invisible': ['|', ('invoice_method','in', ['picking', 'manual']), '|', ('state','!=', 'ordered'), ('invoiced','=',True) ]}</attribute>
+                                </xpath>
 		        </field>
 		</record>
 		<record id="view_purchase_order_extended_inherited" model="ir.ui.view">
@@ -46,11 +50,14 @@
                         <field name="inherit_id" ref="purchase_rfq_bid_workflow.view_purchase_order_form"/>
                         <field name="arch" type="xml">
 				<xpath expr="//field[@name='state']" position="attributes">
-                                        <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,ordered,done</attribute>
+                                        <attribute name="statusbar_visible">draft,sent,bid,draftpo,approved,sent_order,ordered,done</attribute>
                                 </xpath>
 				<xpath expr="//button[@name='draft_po']" position="after">
 					<button name="clone_to_draft_po" states="bid" string="Clone to PO" type="object" groups="base.group_user"  class="oe_highlight"/>
 				</xpath>
+				<xpath expr="//button[@name='action_cancel']" position="attributes">
+                                        <attribute name="states">draftbid,draftpo,draft,confirmed,sent,bid,approved,order_sent,ordered,except_picking,except_invoice</attribute>
+                                </xpath>
                         </field>
                 </record>
 	</data>
