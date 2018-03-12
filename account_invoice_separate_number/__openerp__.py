@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Separate Numbers for Invoices",
+    'name': "Separate Name and Partner Refs for Invoices",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Odoo's standard behaviour is to use the invoice-number as main naming context of the invoice documents. This module changes this in the corresponding tree views and adds a partner reference so we can additionally  show from which partner document the invoice originated.""",
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "Your Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Jörn Krenzer",
+    'website': "http://github.com/jkrenzer",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'account'],

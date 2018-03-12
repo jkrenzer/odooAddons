@@ -1,15 +1,30 @@
 <openerp>
     <data>
 	<record id="view_account_invoice_separate_number" model="ir.ui.view">
-                        <field name="name">account.invoice.separate_number.form</field>
+                        <field name="name">account.invoice_separate_number.form</field>
                         <field name="model">account.invoice</field>
                         <field name="inherit_id" ref="account.invoice_form"/>
                         <field name="arch" type="xml">
-                                <xpath expr="//field[@name='number']" position="attributes">
-                                        <attribute name="readonly">False</attribute>
+                                <xpath expr="//field[@name='number']" position="replace">
+                                        <field name="name"/>
+                                </xpath>
+                                <xpath expr="//field[@name='origin']" position="after">
+                                        <field name="partner_ref"/>
                                 </xpath>
                         </field>
          </record>
-
+         <record id="view_account_invoice_tree_view" model="ir.ui.view">
+                        <field name="name">account.invoice_separate_number.tree</field>
+                        <field name="model">account.invoice</field>
+                        <field name="inherit_id" ref="account.invoice_tree"/>
+                        <field name="arch" type="xml">
+                                <xpath expr="//field[@name='number']" position="before">
+                                        <field name="name"/>
+                                </xpath>
+                                <xpath expr="//field[@name='origin']" position="after">
+                                        <field name="partner_ref"/>
+                                </xpath>
+                        </field>
+         </record>
     </data>
 </openerp>

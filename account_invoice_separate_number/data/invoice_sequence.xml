@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-        <!-- Sequences for purchase.order -->
-        <record forcecreate="1" id="seq_type_invoice_" model="ir.sequence.type">
-            <field name="name">Invoice</field>
-            <field name="code">account.invoice.number</field>
+        <!-- Sequences for account.invoice depending on context (customer or supplier, invoice or refund) -->
+        <record forcecreate="1" id="seq_type_account_invoice_customer_invoice" model="ir.sequence.type">
+            <field name="name">Customer Invoice</field>
+            <field name="code">account.invoice.customer.invoice</field>
         </record>
-        <record forcecreate="1" id="seq_account_invoice" model="ir.sequence">
-            <field name="name">Invoice</field>
-            <field name="code">account.invoice.number</field>
+        <record forcecreate="1" id="seq_account_invoice_customer_invoice" model="ir.sequence">
+            <field name="name">Customer Invoice</field>
+            <field name="code">account.invoice.customer.invoice</field>
             <field name="prefix">IV</field>
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+	<record forcecreate="1" id="seq_type_account_invoice_customer_refund" model="ir.sequence.type">
+            <field name="name">Customer Refund</field>
+            <field name="code">account.invoice.customer.refund</field>
+        </record>
+        <record forcecreate="1" id="seq_account_invoice_customer_refund" model="ir.sequence">
+            <field name="name">Customer Refund</field>
+            <field name="code">account.invoice.customer.refund</field>
+            <field name="prefix">RF</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+	<record forcecreate="1" id="seq_type_account_invoice_supplier_invoice" model="ir.sequence.type">
+            <field name="name">Supplier Invoice</field>
+            <field name="code">account.invoice.supplier.invoice</field>
+        </record>
+        <record forcecreate="1" id="seq_account_invoice_supplier_invoice" model="ir.sequence">
+            <field name="name">Supplier Invoice</field>
+            <field name="code">account.invoice.supplier.invoice</field>
+            <field name="prefix">SI</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+	<record forcecreate="1" id="seq_type_account_invoice_supplier_refund" model="ir.sequence.type">
+            <field name="name">Supplier Refund</field>
+            <field name="code">account.invoice.supplier.refund</field>
+        </record>
+        <record forcecreate="1" id="seq_account_invoice_supplier_refund" model="ir.sequence">
+            <field name="name">Supplier Refund</field>
+            <field name="code">account.invoice.supplier.refund</field>
+            <field name="prefix">SR</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
     </data>
 </openerp>
 
