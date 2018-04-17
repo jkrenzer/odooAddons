@@ -1,0 +1,18 @@
+<openerp>
+	<data>
+
+                <record id="product_price_correction_search" model="ir.ui.view">
+                        <field name="name">product.price.correction.search</field>
+                        <field name="model">product.price.correction</field>
+                        <field name="arch" type="xml">
+                                <search string="Search Product Price Correction">
+					<field name="product" string="Product"/>
+					<field name="product_template" string="Product Template"/>
+					<field name="date" string="Date"/>
+                                        <field name="quants" string="Lot/Serial/Product"/>	
+				</search>
+                        </field>
+                </record>
+        </data>
+</openerp>
+

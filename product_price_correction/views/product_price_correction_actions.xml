@@ -1,0 +1,39 @@
+<openerp>
+	<data>
+
+                <record id="product_price_correction_action_apply" model="ir.actions.server">
+                        <field name="name">Apply</field>
+                        <field name="condition">True</field>
+                        <field name="type">ir.actions.server</field>
+                        <field name="model_id" ref="model_product_price_correction"/>
+                        <field name="state">code</field>
+                        <field name="code">
+			    self.action_apply(cr,uid,context.get('active_ids'),context=context)	
+                        </field>
+                </record>
+
+                <record id="product_price_correction_action_undo" model="ir.actions.server">
+                        <field name="name">Undo</field>
+                        <field name="condition">True</field>
+                        <field name="type">ir.actions.server</field>
+                        <field name="model_id" ref="model_product_price_correction"/>
+                        <field name="state">code</field>
+                        <field name="code">
+                            self.action_undo(cr,uid,context.get('active_ids'),context=context)  
+                        </field>
+                </record>
+
+                <record model="ir.values" id="product_price_correction_context_menu_confirm">
+                    <field name="name">Confirm Delivery Note</field>
+                    <field name="model" eval="'product_price_correction.product_price_correction'" />
+                    <field name="model_id" ref="model_product_price_correction"/>
+                    <field name="key" >action</field>
+                    <field name="key2">client_action_multi</field>
+                    <field name="value" eval="'ir.actions.server,%d'% product_price_correction_action_apply" />
+                    <field name="object" eval="True" />
+                    <field name="action_id" ref="product_price_correction_action_apply"/>
+                </record>
+
+        </data>
+</openerp>
+

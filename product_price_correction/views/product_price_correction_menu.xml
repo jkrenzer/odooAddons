@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Actions, must be declared before menu items -->
+
+    <record model="ir.actions.act_window" id="action_list_product_price_corrections">
+      <field name="name">Product Price Correction</field>
+      <field name="res_model">product.price.correction</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a price correction item.
+              </p><p>
+                Price corrections can be used to change wrong history prices or to synchronize a detached price-history and quant prices.
+              </p>
+            </field>
+
+    </record>
+
+    <!-- Menus  -->
+
+    <menuitem name="Corrections" parent="account.menu_finance" id="account_corrections_menu_parent" sequence="10" groups="account.group_account_manager"/>
+    <menuitem name="Product Prices" id="product_price_corrections_view" action="action_list_product_price_corrections" parent="account_corrections_menu_parent" sequence="10"/>
+
+  </data>
+</openerp>
+

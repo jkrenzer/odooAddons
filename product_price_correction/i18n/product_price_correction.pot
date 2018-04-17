@@ -1,0 +1,455 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_price_correction
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-19 15:49+0000\n"
+"PO-Revision-Date: 2018-03-19 15:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_price_correction
+#: model:ir.actions.act_window,help:product_price_correction.action_list_product_price_corrections
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a price correction item.\n"
+"              </p><p>\n"
+"                Price corrections can be used to change wrong history prices or to synchronize a detached price-history and quant prices.\n"
+"              </p>\n"
+"            "
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_historic_line:0
+msgid "Applicable Historic Price"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_template_historic_line:0
+msgid "Applicable Historic Template Price"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,purchase_line:0
+msgid "Applicable Purchase"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,quant:0
+msgid "Applicable Quant Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,purchase_line:0
+msgid "Applicable purchase line"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,quant:0
+msgid "Applicable quant"
+msgstr ""
+
+#. module: product_price_correction
+#: model:ir.actions.server,name:product_price_correction.product_price_correction_action_apply
+#: view:product.price.correction:product_price_correction.product_price_correction_form_view
+msgid "Apply"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,strategy:0
+msgid "Apply to all"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,strategy:0
+msgid "Change bigger than master"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,change_historic_line:0
+msgid "Change historic line"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,change_purchase_line:0
+msgid "Change purchase line"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,change_quant:0
+msgid "Change quant"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,strategy:0
+msgid "Change smaller than master"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,change_template_historic_line:0
+msgid "Change template historic line"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,strategy:0
+msgid "Change zero prices only"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,master_cost:0
+msgid "Correct Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: model:ir.ui.menu,name:product_price_correction.account_corrections_menu_parent
+msgid "Corrections"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,quant_cost:0
+msgid "Cost from Quant"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product_historic_line:0
+msgid "Cost from product price history"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product_template_historic_line:0
+msgid "Cost from product template price history"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_form_view
+#: view:product.price.correction:product_price_correction.product_price_correction_search
+#: view:product.price.correction:product_price_correction.product_price_correction_tree_view
+msgid "Date"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,date:0
+msgid "Date on which the movement which is to be revaluated was made."
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,master:0
+msgid "Decide which object gives the master price to which the other ones are corrected."
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,strategy:0
+msgid "Do nothing"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,state:0
+msgid "Done"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_follower_ids:0
+msgid "Followers"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_historic_cost:0
+msgid "Historic Product Price"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_template_historic_cost:0
+msgid "Historic Template Price"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product_history_lines:0
+msgid "Historic product prices."
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product_template_history_lines:0
+msgid "Historic product template prices."
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,id:0
+msgid "ID"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,purchase_lines:0
+msgid "Lines in purchase orders."
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_search
+msgid "Lot/Serial/Product"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,master:0
+msgid "Master Cost Object"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_ids:0
+msgid "Messages"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,date:0
+msgid "Movement Date"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,old_product_historic_cost:0
+msgid "Old Product History Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,old_purchase_line_cost:0
+msgid "Old Purchase Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,old_quant_cost:0
+msgid "Old Quant Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,old_product_template_historic_cost:0
+msgid "Old Template History Cost"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_form_view
+msgid "Overview"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_form_view
+msgid "Price Correction"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,purchase_line_cost:0
+msgid "Price on Purchase"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_search
+#: field:product.price.correction,product:0
+msgid "Product"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,master:0
+msgid "Product History"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_history_lines:0
+msgid "Product History Prices"
+msgstr ""
+
+#. module: product_price_correction
+#: model:ir.actions.act_window,name:product_price_correction.action_list_product_price_corrections
+#: model:ir.model,name:product_price_correction.model_product_price_correction
+msgid "Product Price Correction"
+msgstr ""
+
+#. module: product_price_correction
+#: model:ir.ui.menu,name:product_price_correction.product_price_corrections_view
+msgid "Product Prices"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_search
+#: field:product.price.correction,product_template:0
+msgid "Product Template"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,product_template_history_lines:0
+msgid "Product Template History Prices"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product:0
+msgid "Product involved in the move."
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,product_template:0
+msgid "Product template involved in the move."
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,master:0
+msgid "Purchase Line"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,purchase_lines:0
+msgid "Purchase Lines"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,master:0
+msgid "Quant"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,quants:0
+#: help:product.price.correction,quants:0
+msgid "Quants"
+msgstr ""
+
+#. module: product_price_correction
+#: view:product.price.correction:product_price_correction.product_price_correction_search
+msgid "Search Product Price Correction"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,state:0
+msgid "State"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,state:0
+msgid "State of correction"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,move:0
+msgid "Stock Move"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,move:0
+msgid "Stock move whose costs should be corrected."
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,strategy:0
+msgid "Strategy"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,master:0
+msgid "Template History"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,master_cost:0
+msgid "The cost to which the other objects will be corrected, if their checkbox is set."
+msgstr ""
+
+#. module: product_price_correction
+#: model:ir.actions.server,name:product_price_correction.product_price_correction_action_undo
+#: view:product.price.correction:product_price_correction.product_price_correction_form_view
+msgid "Undo"
+msgstr ""
+
+#. module: product_price_correction
+#: selection:product.price.correction,state:0
+msgid "Undone"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,message_unread:0
+msgid "Unread Messages"
+msgstr ""
+
+#. module: product_price_correction
+#: field:product.price.correction,website_message_ids:0
+msgid "Website Messages"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,website_message_ids:0
+msgid "Website communication history"
+msgstr ""
+
+#. module: product_price_correction
+#: help:product.price.correction,strategy:0
+msgid "With which price should be applied as correct master to the other cost-variables?"
+msgstr ""
+
