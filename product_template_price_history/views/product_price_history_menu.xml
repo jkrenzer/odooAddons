@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="action_tree_product_price_history">
+            <field name="name">Product Template Price History</field>
+            <field name="res_model">product.price.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="xml">
+                <p class="oe_view_nocontent_create">
+                    Click to add a historic product template price.
+              </p><p>
+                    Product template historic prices are used depending on the costing methods defined on the product do determine values for cost- and bilance accounting reports.
+              </p>
+            </field>
+        </record>
+        <menuitem name="Product Price History" parent="account.menu_finance" id="product_price_history_menu_parent" groups="group_account_manager"  sequence="10"/>
+        <menuitem name="Product Templates" id="product_price_history_templates" action="action_tree_product_price_history" parent="product_price_history_menu_parent" sequence="10"/>
+    </data>
+</openerp>

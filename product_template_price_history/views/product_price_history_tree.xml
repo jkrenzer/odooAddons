@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_price_history_tree_view">
+            <field name="name">product.price.history.tree</field>
+            <field name="model">product.price.history</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_template_id"/>
+                    <field name="datetime"/>
+                    <field name="cost"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>
