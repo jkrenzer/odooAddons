@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+         <record id="view_stock_move_connect" model="ir.ui.view">
+            <field name="name">stock.move.connect.form</field>
+            <field name="model">stock.move.connect</field>
+            <field name="arch" type="xml">
+                <form string="Connections of Move">
+                    <div class="oe_grey">
+                        This wizard allows to edit or set the connection of the move to other odoo-objects.
+                    </div>
+                    <group string="Moves">
+                        <field name="moves"/>
+                    </group>
+                    <group string="Connections">
+                        <field name="lines" editable="top"/>
+                    </group>
+                    <footer>
+                        <button name="action_apply" string="_Apply" type="object" class="oe_highlight"/>
+                        or
+                        <button string="_Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
