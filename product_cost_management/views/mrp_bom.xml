@@ -1,0 +1,43 @@
+<openerp>
+    <data>
+        <record id="mrp_bom_form_view_product_cost_management" model="ir.ui.view">
+            <field name="name">mrp.bom.form.product_cost_management</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Components']" position="after">
+                    <page string="Cost Details">
+                        <group string="Estimated Costs">
+                            <field name="estimated_own_work_cost" string="Own Work Costs"/>
+                            <field name="estimated_inherited_work_cost" string="From Components"/>
+                            <field name="estimated_work_cost" string="Total Work Cost"/>
+                            <field name="estimated_material_cost" string="Material"/>
+                        </group>
+                    </page>
+                </xpath>
+                <field name="product_id" position="after">
+                    <field name="estimated_total_cost"/>
+                </field>
+                <xpath expr="//tree[@string='Components']/field[@name='product_uom']" position="after">
+                    <field name="estimated_work_cost"/>
+                    <field name="estimated_material_cost"/>
+                    <field name="estimated_total_cost"/>
+                </xpath>
+            </field>
+        </record>
+<!--
+        <record id="mrp_bom_tree_view_product_extended" model="ir.ui.view">
+            <field name="name">mrp.bom.tree.product_cost_management</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp_bom.mrp_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="before">
+                    <field name="estimated_work_cost"/>
+                    <field name="estimated_material_cost"/>
+                    <field name="estimated_total_cost"/>
+                </field>
+            </field>
+        </record>
+-->
+    </data>
+</openerp>
