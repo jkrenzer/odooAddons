@@ -8,6 +8,12 @@
                 <xpath expr="//button[@name='action_quotation_send']" position="before">
                     <button name="action_order_confirm" string="Confirm Order" type="object" states="draft_order" class="oe_highlight" groups="base.group_user"/>
                 </xpath>
+                <xpath expr="//sheet/h1/label[@string='Quotation ']" position="replace"/>
+                <xpath expr="//sheet/h1/label[@string='Sales Order ']" position="replace"/>
+                <xpath expr="//sheet/h1/field[@name='name']" position="before">
+                    <field name="type" nolabel="1" class="oe_inline"/>
+                    <label string=" "/>
+                </xpath>
                 <xpath expr="//button[@name='action_button_confirm']" position="attributes">
                     <attribute name="string">Derive Sale</attribute>
                 </xpath>
@@ -35,6 +41,11 @@
             </field>
         </record>
         <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="context">{
+                    'draft_order':False,
+                    'search_default_my_sale_orders_filter': 1
+                }
+            </field>
             <field name="domain">[('type','=','quotation')]</field>
         </record>
 

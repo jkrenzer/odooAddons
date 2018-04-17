@@ -45,31 +45,25 @@ class SaleOrder(models.Model):
 	'progress': [('readonly', True)],
 	'done': [('readonly', True)]
     }
+
     TYPE_SELECTION = [
         ('quotation', 'Quotation'),
         ('order', 'Order')
     ]
-    @api.one
+
     def _default_type(self):
-        if self._context.get('draft_order'):
+        if self._context.get('draft_order', False) is True:
             return 'order'
         else:
             return 'quotation'
 
-    @api.one
-    def _default_state(self):
-        if self._default_type() == 'order':
-            return 'draft_order'
-        else:
-            return 'draft'
-
     state = fields.Selection(selection=STATES, string='Status', readonly=True, copy=False, help="Gives the status of the quotation or sales order.\
               \nThe exception status is automatically set when a cancel operation occurs \
               in the invoice validation (Invoice Exception) or in the picking list process (Shipping Exception).\nThe 'Waiting Schedule' status is set when the invoice is confirmed\
-               but waiting for the scheduler to run on the order date.", default=_default_state, required=True)
-    type = fields.Selection(selection=TYPE_SELECTION, string="Type", help="Type of the object.", required=True, readonly=True, default=_default_type)
+               but waiting for the scheduler to run on the order date.", required=True)
+    type = fields.Selection(selection=TYPE_SELECTION, string="Type", help="Type of the object.", readonly=True, default=_default_type)
     name = fields.Char('Order Reference', required=True, copy=False, readonly=False, states=READONLY_STATES, select=True, help='Unique number of sale order, computed automatically when the order is created.')
-    manual_name = fields.Char('Manual Name', states=READONLY_STATES, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
+    manual_name = fields.Char('Manual Name', states=READONLY_STATES, related='name', store=True, help='Use this field to manually override the assigned name of the object.')
 #    manual_name = fields.Char('Manual Name', readonly=False, related='name', store=False, help='Use this field to manually override the assigned name of the object.')
     parents =  fields.Many2many(comodel_name='sale.order', string='Parent Objects', relation="sale_quot_order_rel", column1='parents', column2='children', readonly=False, copy=False)
     children = fields.Many2many(comodel_name='sale.order', string='Children Objects', relation="sale_quot_order_rel", column1='children', column2='parents', readonly=False, copy=False)
@@ -89,11 +83,32 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('name', '/') == '/' and vals.get('type','quotation') != 'order':
-            vals['name'] = self.env['ir.sequence'].get('sale.order.quotation')
+        description = self._description
+        vals.update({'type': self._default_type()})
+        if str(vals.get('name', '/')).strip() != '/' and str(vals.get('manual_name', '/')).strip() == '/':
+            vals['manual_name'] = vals['name']
+        elif str(vals.get('manual_name', '/')).strip() != '/':
+            vals['name'] = vals['manual_name']
         else:
-            vals['name'] = self.env['ir.sequence'].get('sale.order.quotation')
-        return super(SaleOrder, self).create(vals)
+            if vals.get('type','quotation') != 'order':
+                vals['name'] = self.env['ir.sequence'].next_by_code('sale.order.quotation')
+                vals['manual_name'] = vals['name']
+            else:
+                vals['name'] = self.env['ir.sequence'].next_by_code('sale.order')
+                vals['manual_name'] = vals['name']
+        if vals.get('type','quotation') == 'order':
+            vals['state'] = 'draft_order'
+            self._description = "Draft Order"
+        newObj = super(SaleOrder, self).create(vals)
+        self._description = description
+        return newObj
+
+    @api.multi
+    def unlink(self):
+        for rec in self:
+            if rec.state == 'draft_order':
+               rec.state = 'draft'
+        return super(SaleOrder, self).unlink()
 
     @api.one
     def action_button_confirm(self):
