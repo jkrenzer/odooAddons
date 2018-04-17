@@ -32,21 +32,19 @@ class AccountInvoice(models.Model):
         self.invoice_neg_line = self.invoice_line.filtered(lambda record: record.price_subtotal < 0)
 
     @api.one
-#    @api.depends('invoice_pos_line', 'tax_pos_line')
     def _compute_pos_amount(self):
         self.amount_pos_untaxed = sum(line.price_subtotal for line in self.invoice_pos_line)
         self.amount_pos_tax = sum(line.total_tax_amount for line in self.invoice_pos_line)
         self.amount_pos_total = self.amount_pos_untaxed + self.amount_pos_tax
 
     @api.one
-#    @api.depends('invoice_neg_line', 'tax_neg_line')
     def _compute_neg_amount(self):
         self.amount_neg_untaxed = sum(line.price_subtotal for line in self.invoice_neg_line)
         self.amount_neg_tax = sum(line.total_tax_amount for line in self.invoice_neg_line)
         self.amount_neg_total = self.amount_neg_untaxed + self.amount_neg_tax
 
     @api.one
-    @api.depends('invoice_line.price_subtotal', 'tax_line.amount')
+    @api.depends('invoice_pos_line', 'invoice_neg_line', 'tax_line.amount')
     def _compute_amount(self):
         self._compute_pos_amount()
         self._compute_neg_amount()

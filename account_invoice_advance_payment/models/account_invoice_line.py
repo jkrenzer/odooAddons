@@ -8,12 +8,15 @@ class AccountInvoiceLine(models.Model):
 
 
     @api.one
-    @api.depends('price_unit', 'discount', 'invoice_line_tax_id', 'quantity', 'product_id', 'invoice_id.partner_id', 'invoice_id.currency_id')
+    @api.depends('price_unit', 'discount', 'invoice_line_tax_id', 'quantity', 'product_id')
     def _compute_price_tax(self):
         price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
-        taxes = self.invoice_line_tax_id.compute_all(price, self.quantity, product=self.product_id, partner=self.invoice_id.partner_id)
-        self.price_subtotal_tax = taxes['total_included']
-        self.total_tax_amount = sum(tax['amount'] for tax in taxes['taxes'])
+        taxes = self.invoice_line_tax_id.compute_all(price, self.quantity, product=self.product_id, partner=self.invoice_id.partner_id or None)
+        price_subtotal_tax = taxes['total_included']
+        total_tax_amount = sum(tax['amount'] for tax in taxes['taxes'])
         if self.invoice_id:
-              self.price_subtotal_tax = self.invoice_id.currency_id.round(self.price_subtotal_tax)
-              self.total_tax_amount = self.invoice_id.currency_id.round(self.total_tax_amount)
+              self.price_subtotal_tax = self.invoice_id.currency_id.round(price_subtotal_tax)
+              self.total_tax_amount = self.invoice_id.currency_id.round(total_tax_amount)
+        else:
+              self.price_subtotal_tax = price_subtotal_tax
+              self.total_tax_amount = total_tax_amount
