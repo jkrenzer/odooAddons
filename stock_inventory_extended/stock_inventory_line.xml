@@ -16,6 +16,10 @@
 				<xpath expr="//field[@name='product_qty']" position="before">
                                         <field name="theoretical_qty"/>
                                 </xpath>
+                                <xpath expr="//field[@name='product_qty']" position="after">
+                                        <field name="theoretical_value"/>
+                                        <field name="real_value"/>
+                                </xpath>
 				<xpath expr="//tree" position="attributes">
 					<attribute name="editable">top</attribute>
 					<attribute name="colors">darkgreen:checked</attribute>

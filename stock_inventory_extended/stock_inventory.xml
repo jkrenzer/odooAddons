@@ -12,7 +12,13 @@
 						</button>
 					</div>
 				</xpath>
+                                <field name="filter" position="after">
+                                    <field name="theoretical_value"/>
+                                    <field name="real_value"/>
+                                </field>
 				<xpath expr="//tree/field[contains(@name, 'product_qty')]" position="after">
+                                        <field name="theoretical_value"/>
+                                        <field name="real_value"/>
 					<field name="checked" string="Checked"/>
 				</xpath>
 			</field>

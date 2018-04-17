@@ -6,6 +6,20 @@ class StockInventory(models.Model):
 	_inherit = 'stock.inventory'
 
 	lines_count = fields.Integer(compute='_lines_count', string="Number of inventory lines")
+        real_value = fields.Float(string="Real Value", compute="_compute_value", store=False, help="Value based on counted amounts and the corresponding standard-prices.")
+        theoretical_value = fields.Float(string="Theoretical Value", compute="_compute_value", store=False, help="Value based on the theoretical amounts and the corresponding standard-prices.")
+
+        @api.multi
+        @api.depends('line_ids')
+        def _compute_value(self):
+            for inventory in self:
+                real_value = 0.0
+                theoretical_value = 0.0
+                for line in inventory.line_ids:
+                    real_value += line.real_value
+                    theoretical_value += line.theoretical_value
+                inventory.real_value = real_value
+                inventory.theoretical_value = theoretical_value
 
 	@api.multi
 	@api.depends('line_ids')
