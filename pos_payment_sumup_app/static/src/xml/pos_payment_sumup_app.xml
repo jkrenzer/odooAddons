@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery=".payment-buttons" t-operation="append">
+            <t t-if="widget.pos.config.module_pos_payment_sumup_app">
+                   <div class="button js_payment_sumup_app_start">
+                       <i class="fa fa-calculator"></i>
+                       Start Sumup App
+                   </div>
+            </t>
+        </t>
+    </t>
+</templates>
